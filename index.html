@@ -1,51 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>query</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>查询空余教室</title>
+	<link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+	<script src="./bootstrap/jquery.js"></script>
+	<script src="./bootstrap/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="container">
-  <h1>hello!</h1>
+	<div class="container">
+	<div class="col-sm-2">当前为周</div>
+	<div class="col-sm-3">选择日期</div>
+	<div class="col-sm-3">选择时间段</div>
+	<div class="col-sm-3">立即查询</div>
+	<div class="col-sm-1">重置</div>
 
-  </div>
+
+
+	<form action="">
+		<div class="col-sm-3 from-group">
+		<label for="">选择日期</label>
+		<input type="date"  ></div>
+		<div class="col-sm-5 form-group">
+		<label for="">选择开始课时</label>
+		<select name="" id="" >
+			
+			<option value="1">第一课时</option>
+			<option value="2">第二课时</option>
+			<option value="3">第三课时</option>
+			<option value="4">第四课时</option>
+			<option value="5">第五课时</option>
+			<option value="6">第六课时</option>
+			<option value="7">第七课时</option>
+			<option value="8">第八课时</option>
+			<option value="9">第九课时</option>
+			<option value="10">第五课时</option>
+		</select>
+		<label for="">选择结束课时</label>
+		<select name="" id="" >
+			
+			<option value="1">第一课时</option>
+			<option value="2">第二课时</option>
+			<option value="3">第三课时</option>
+			<option value="4">第四课时</option>
+			<option value="5">第五课时</option>
+			<option value="6">第五课时</option>
+			<option value="7">第五课时</option>
+			<option value="8">第五课时</option>
+			<option value="9">第五课时</option>
+			<option value="10">第五课时</option>
+		</select>
+		</div>
+
+		<div class="col-sm-2 form-group"><input type="submit"  value="查询" class="btn btn-success btn-block "></div>
+		<div class="col-sm-2 form-group"> <input type="reset"   value="重置" class="btn btn-info btn-block"></div> 
+	
+
+
+	</form>
+	<table class="table table-striped table-hover">
+<tr>
+	<td>教室ID</td>
+	<td>教室名称</td>
+	<td>教室规模</td>
+	<td>操作</td>
+</tr>
+
+	</table>
+
+	
+	
+	
+	
+	</div>
 </body>
 </html>
-
-
-create table student_info(id medify unsigned primary key, name char(4),sex enum('男','女','保密'),age int(),edu enum('初中','高中','专科','本科','硕士','博士')，hobby set('吃饭','睡觉','烫头'),edu_school char(9),localtion varchar(12),visitors int,time datetime)
-
-
-create table arctical(
-  arc_id int unsigned not null primary key auto_increment,
-  arc_title varchar(20) not null,
-  arc_writer varchar(20) ,
-  arc_type enum('正史','穿越','网游','言情','科幻'),
-  arc_key char(12),
-  arc_main text(5000),
-  arc_local varchar(50),
-  arc_condition set('已发布','未发布'),
-  arc_puttime datetime
-)
-
-create table emplyee(
-  id mediumint(6) unsigned not null primary key,
-  name char(12) not null,
-  sex enum('男','女') not null default '男',
-  birthday date,
-  local varchar(20),
-  department enum('运营','市场','研发','测试','售后'),
-  position enum('实习生','职员','组长','经理','部门组长','ceo'),
-  cometime datetime
-)
-insert into emplyee values(
-  0,'show',2,19940805,'湖蓝',2,4,now()
-)
-insert into emplyee values(
-  0,'jnx',2,19940805,'legoty',1,5,now()
-)
-insert into emplyee values(
-  0,'timo',1,19990805,'green',4,1,now()
-)
