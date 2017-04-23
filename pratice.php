@@ -1,63 +1,48 @@
 <?php
-class root{
-  private $link=null;
-  static $instance = null; //唯一实例
-  private $user='root';
-  private $host='localhost';
-  private $pwd='9539';
-  private function __construct($conf){
+class student{
+  // private  $link=null;
+  //默认可查询的链接数据库
+  private function link($user='root',$pwd='9539',$host='localhost'){
+    if($link=mysqli_connect($host,$user,$pwd)){
+      return $link;
+    }
+    die("连接失败");
+  }
+  //查询函数
+  public function getres($sql){
+    // var_dump ($link);
+    $res=$this->check($sql);
+    while($row=$res->fetch_assoc()){
+      echo"<tr>";
+      echo"<td>{$row['id']}</td>";
+      echo"<td>{$row['name']}</td>";
+      echo"<td>{$row['size']}</td>";
+      echo"</tr>";
+    }
     
-    $this->link=mysql_connect("{$conf['host']}:{$conf['port']}","{$conf['user']}","{$conf['pwd']}") or die('connect failed');
-    mysql_query("set names {$conf['charset']}",$this->link);
-    mysql_query("use {$conf['dbname']}",$this->link);
   }
-  private function __clone(){}
-  public static function GetDB($conf){
-    if(empty(static::$instance)){
-      static::$instance = new static($conf);
-    }
-    return static::$instance;
-  }
-  //
-  function exec($sql){
-    $result=mysqli_query($sql,$this->link);
-    if($result === false){
-      echo "<p>非常抱歉,语句执行失败,错误信息如下:";
-      echo "<br>错误提示:".mysql_error();
-      echo "<br>错误代号:".mysql_errno();
-      echo "<br>错误语句:".$sql;
-      echo "</p>";
+
+  //判断查询语句结果
+  protected function check($sql){
+    $link=$this->link();    
+    $res=mysqli_query($link,$sql);
+    if($res === false){
+      echo "<br/>查询出错,错误信息如下:";
+      echo "<br/>错误信息:".$link->error;
+      echo "<br/>错误信息:".$link->errno;
+      echo "<br/>查询语句:".$sql;
       die();
     }
-    return $result;
+    return $res;
   }
-  //
-  function GetRows($sql){
-    $result =mysql_query($sql,$this->link);
-    if($result === false){
-      echo "<p>非常抱歉,语句执行失败,错误信息如下:";
-      echo "<br>错误提示:".mysql_error();
-      echo "<br>错误代号:".mysql_errno();
-      echo "<br>错误语句:".$sql;
-      echo "</p>";
-      die();
-      //
-    }//成功的时候,$result是一个资源类型的结果集
-    $arr=array();
-    while($row=mysql_fetch_assoc($result)){
-      $arr[]=$row; //把数组放进数组,组成二维数组
+  public function Rinsert($sql){
+    if($res=$this->check($sql)){
+      echo "<br/>插入数据成功";
+    }
   }
-  return $arr;
+  public function Rchange($sql){
+    if($res=$this->check($sql)){
+      echo "<br/>修改数据成功";
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-?>

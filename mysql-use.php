@@ -7,8 +7,11 @@
   <title>Document</title>
 </head>
 <body>
-  <?php
-  require_once './pratice.php';
+<?php
+require_once './pratice.php';
+if(isset($_POST['submit'])){
+  
+}
 $config = array(
   'host'=>'localhost',
   'port'=>'3306',
@@ -17,12 +20,13 @@ $config = array(
   'charset'=>'utf-8',
   'dbname'=>'allroom'
 );
-$db = root::GetDB($config);
+$db =new Student();
 $sql="show databases";
-mysql_query($sql);
+$sql="select * from query.allroom";
+echo "<pre>";
+$db->Rchange($sql);
 
 
-
-  ?>
+?>
 </body>
 </html>
