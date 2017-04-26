@@ -61,9 +61,6 @@ $rec->demand($receive);
 
 
 
-
-
-
 $config = array(
   'host'=>'localhost',
   'port'=>'3306',
