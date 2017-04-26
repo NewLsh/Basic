@@ -9,30 +9,39 @@
 <body>
 <?php
 require_once './pratice.php';
-if(isset($_REQUEST['submit'])){
-  if(isset($_REQUEST['date'])){
-    var_dump($_REQUEST);
-    $receive=$_REQUEST;
+// var_dump($_POST);
+if(isset($_POST['submit'])){
+  // die('请选择查询条件');
+
+  //从表单中获取数据
+  foreach($_POST as $key=>$value){
+     $$key=$value;
   }
-  
+  if(!isset($_POST['date'])){
+     die('请选择查询日期');
+  }
+  //  var_dump($_POST);
+    $receive=$_POST;
+    
+}else{
+  echo "<script>alert('forbidden');location.href='../lindex.html'</script>";
 }
+
+
 
 //遍历接到的数组
-foreach($receive as $key=>$value){
-  $$key=$value;
-}
-$rec=new mess();
-// $rec->weekth($date);
-$reg=$rec->reg($receive);
-// echo $reg;
-// echo $rec->weekth($receive);
-$rec->demand($receive);
+
+die();
 
 
 
 
-
-
+// $rec=new mess();
+// // $rec->weekth($date);
+// $reg=$rec->reg($receive);
+// // echo $reg;
+// // echo $rec->weekth($receive);
+// $rec->demand($receive);
 
 
 

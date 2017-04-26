@@ -21,7 +21,6 @@ class student{
     }
     
   }
-
   //判断查询语句结果
   protected function check($sql){
     $link=$this->link();    
@@ -35,19 +34,17 @@ class student{
     }
     return $res;
   }
-  public function Rinsert($sql){
+  protected function Rinsert($sql){
     if($res=$this->check($sql)){
       echo "<br/>插入数据成功";
     }
   }
-  public function Rupdate($sql){
+  protected function Rupdate($sql){
     if($res=$this->check($sql)){
       echo "<br/>修改数据成功";
     }
   }
-  public function Rchange(){
-    
-  }
+ 
 }
 final class Teacher{
   // protected
@@ -67,30 +64,28 @@ final class Teacher{
       $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       $res=$dbh->exec($sql);
       if(!$res){
-        throw new PDOException('查询失败');
+        throw new PDOException('插入数据失败');
         }
     }catch (PDOException $e){
       print "Error!:". $e->getMessage() .'<br/>';
-    
       echo "Error!:".$e->getCode().'<br/>';
-
       // var_dump($e->getTrace());
       die();
     }
     // return $res;
   }
-  public function change($sql){
+  public function change($sql1,$sql2){
     try{
       $dbh=$this->link();
       $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       $dbh->beginTransaction();
-      $sta=$dbh->exec($sql);
+      $sta=$dbh->query($sql1);
       if(!$sta){
-        throw new PDOException('查询失败');
+        throw new PDOException('修改失败');
       }
-      $sta=$dbh->$sql;
+      $sta=$dbh->query($sql2);
       if(!$sta){
-        throw new PDOException('查询失败');
+        throw new PDOException('删除失败');
       }
       $dbh->commit();
       
@@ -147,12 +142,18 @@ class mess{
     //
     return $reg;
   }
+  //查询语句的方法
   function demand($arr){
     $reg=$this->reg($arr);
     $weekth=$this->weekth($arr);
     $sql="select * from week".$weekth ." where Regexp '$reg'";
-    echo $sql;
+    // echo $sql;
     return $sql;
+  }
+  // 创建小窗口的方法
+  static function small(){
+    $small="javascript:window.open('./manage.html','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')";
+    echo $small;
   }
 }
 

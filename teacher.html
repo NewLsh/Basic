@@ -11,6 +11,9 @@
   <script src="./bootstrap/bootstrap.min.js"></script>
 </head>
 <body>
+<?php 
+require_once './core/pratice.php';
+?>
 <div class="container">
   <div class="text-right">
     <a href="lindex.html">安全退出</a>
@@ -19,7 +22,7 @@
 <h4>本周您共有$num节课程</h4>
 
 
-
+弹窗
 
 
 
@@ -27,8 +30,7 @@
 记得弹小窗口!!!!
 
 
-
-
+<a href="#" onclick=<?php $a=new mess();$a->small() ?>>小窗口</a>
 
 
 <table class="table table-hover">

@@ -1,125 +1,165 @@
 <?php
-echo header("content-type:text/html;charset=utf8");
-
-#计算当前第几周
-function weekth(){
-  //设置开学日期
-  $scday=date('z',strtotime('2017-02-20'));
-  //获取当天日期
-  $today=date('z');
-  //计算当前周为第几周
-  $weekth=ceil(($today-$scday)/7);
-  //$weekth就是想要的
-  echo "$scday,$today,$weekth";
-  return $weekth;
-}
-weekth();
-
-#链接数据库
- $host='localhost';
- $user='root';
- $pwd='9539';
-$link=mysql_connect($host,$user,$pwd);
-if(!$link){
-  die ('链接数据库失败'.mysql_error());
-}
-// var_dump ($link);
-
-function reg($s1,$s2,$floor,$day){
-  if($s1>$s2){
-    //弹出警告框
-    echo "<script>alert ('请选择正确时间段！');location.href='main.html'</script>";
+class student{
+  // private  $link=null;
+  //默认可查询的链接数据库
+  private function link($user='root',$pwd='9539',$host='localhost'){
+    if($link=mysqli_connect($host,$user,$pwd)){
+      return $link;
+    }
+    die("连接失败");
   }
-  //得到reg最后部分
-  switch ($s1){
-  case 1:
-  $start=1;break;
-  case 2:
-  $start=1;break;
-  case 3:
-  $start=2;break;
-  case 4:
-  $start=2;break;
-  case 5:
-  $start=3;break;
-  case 6:
-  $start=3;break;
-  case 7:
-  $start=4;break;
-  case 8:
-  $start=4;break;
-  case 9:
-  $start=5;break;
+  //查询函数
+  public function Rprint($sql){
+    // var_dump ($link);
+    $res=$this->check($sql);
+    while($row=$res->fetch_assoc()){
+      echo"<tr>";
+      echo"<td>{$row['id']}</td>";
+      echo"<td>{$row['name']}</td>";
+      echo"<td>{$row['size']}</td>";
+      echo"</tr>";
+    }
+    
   }
-  switch ($s2){
-  case 1:
-  $stop=1;break;
-  case 2:
-  $stop=1;break;
-  case 3:
-  $stop=2;break;
-  case 4:
-  $stop=2;break;
-  case 5:
-  $stop=3;break;
-  case 6:
-  $stop=3;break;
-  case 7:
-  $stop=4;break;
-  case 8:
-  $stop=4;break;
-  case 9:
-  $stop=5;break;
-  case 10:
-  $stop=5;break;
+  //判断查询语句结果
+  protected function check($sql){
+    $link=$this->link();    
+    $res=mysqli_query($link,$sql);
+    if($res === false){
+      echo "<br/>查询出错,错误信息如下:";
+      echo "<br/>错误信息:".$link->error;
+      echo "<br/>错误信息:".$link->errno;
+      echo "<br/>查询语句:".$sql;
+      die();
+    }
+    return $res;
   }
- $th='';
-  for(;$start<=$stop;$start++){
-    $th.="$start";
+  public function Rinsert($sql){
+    if($res=$this->check($sql)){
+      echo "<br/>插入数据成功";
+    }
   }
-// echo "${today}#$start"; 数据采集完成  
-//reg楼层的选择
-switch($floor){
-  case 1:
-  $floor='勤政楼';break;
-  case 2:
-  $floor='';break;
-  case 3:
-  $floor='';break;
-  case 4:
-  $floor='';break;
+  public function Rupdate($sql){
+    if($res=$this->check($sql)){
+      echo "<br/>修改数据成功";
+    }
+  }
+  public function Rchange(){
+    
+  }
 }
-//计算当前第几周
+final class Teacher{
+  // protected
+  // protected 
+  function link($user='root',$pwd='9539'){
+    try{
+    $link=new PDO('mysql:host=localhost;dbname=query',$user,$pwd,array(PDO::ATTR_PERSISTENT=>TRUE));
+    }catch (PDOException $e) {
+      print "Error!:".$e->getMessage().'<br/>';
+      die();
+    }
+    return $link;
+  }
+  public function insert($sql){
+    $dbh=$this->link();
+    try{
+      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      $res=$dbh->exec($sql);
+      if(!$res){
+        throw new PDOException('插入数据失败');
+        }
+    }catch (PDOException $e){
+      print "Error!:". $e->getMessage() .'<br/>';
+      echo "Error!:".$e->getCode().'<br/>';
+      // var_dump($e->getTrace());
+      die();
+    }
+    // return $res;
+  }
+  public function change($sql1,$sql2){
+    try{
+      $dbh=$this->link();
+      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      $dbh->beginTransaction();
+      $sta=$dbh->query($sql1);
+      if(!$sta){
+        throw new PDOException('修改失败');
+      }
+      $sta=$dbh->query($sql2);
+      if(!$sta){
+        throw new PDOException('删除失败');
+      }
+      $dbh->commit();
+      
+    }catch (PDOException $e){
+      $dbh->rollback();
+      print "Error!:". $e->getMessage() .'<br/>';
+    
+      echo "Error!:".$e->getCode().'<br/>';
 
- //设置开学日期
-  $scday=date('z',strtotime('2017-02-20'));
-  //获取当天日期
-  $today=date('z',$day);
-  //计算当前周为第几周
-  $weekth=ceil(($today-$scday)/7);
-  //$weekth就是想要的
+      // var_dump($e->getTrace());
+      die();
+    }
+  }
 
-//获得所选日期为周几
-$week=date('w',$day);
-//
 
-$reg=$floor.'.*'.$week.'#['.$th.']';
-$ask="select name,room,size from '$weekth' where room regexp '$reg'";
-return $ask;
+
 }
-$ask=reg(1,8,1,strtotime());
-$res=mysql_query($ask,$link);
-if(!$res)
-{
-  die("查询出错,错误如下:".mysql_error());
+
+//杂乱的功能
+class mess{
+  static $s_start="2017-02-04";
+  // protected
+   function weekth($arr){
+    // 计算当前第几周
+    //开学时间转化为秒数,取天数
+    $scday=date('z',strtotime(self::$s_start));
+    //传入的时间转化为秒数,去天数
+    $today=date('z',strtotime($arr['date']));
+    //向上取整为所选周数
+    $weekth=ceil(($today-$scday)/7);
+    // echo "$scday,$today,$weekth";
+    //返回周数
+    return $weekth;
+  }
+  //
+  function reg($arr){
+    //获得楼的名字
+    switch($arr['floor']){
+      case 0:
+        $floor="";break;
+      case 1:
+        $floor="勤政楼";break;
+      case 2:
+        $floor="计科楼";break;
+      case 3:
+        $floor="物理南楼";break;
+      case 4:
+        $floor="化学北楼";break;
+    }
+    //查询的日期为周几
+    $week=date('w',strtotime($arr['date']));
+    //生成regexp语句
+    $reg="$floor".'.*'.$week.'#'.$arr['course'];
+    //
+    return $reg;
+  }
+  //查询语句的方法
+  function demand($arr){
+    $reg=$this->reg($arr);
+    $weekth=$this->weekth($arr);
+    $sql="select * from week".$weekth ." where Regexp '$reg'";
+    echo $sql;
+    return $sql;
+  }
+  // 创建小窗口的方法
+  static function small(){
+    $small="javascript:window.open('./manage.html','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')";
+    echo $small;
+  }
 }
-// return $res;
-// $res=reg(1,8,1,strtotime());
-$row=mysql_fetch_array($res);
-var_dump ($row);
 
 
 
 
 
-?>

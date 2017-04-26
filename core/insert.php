@@ -4,14 +4,19 @@ $all=all();
 
 
 echo "<pre>";
-shuffle($all);
+// shuffle($all);
 // var_dump ($all);
 // die;
-$sql="insert ignore into rooms (name,week) values";
-for($i=0;$i<500;$i++){
-  $room=$all[$i];
-  $sql.= $i!=0? ",('$room',682)":"('$room',682)"; 
-}
+$sql="insert into query.allroom (name) values ";
+// for($i=0;$i<500;$i++){
+//   $room=$all[$i];
+//   $sql.= $i!=0? ",('$room',682)":"('$room',682)"; 
+// // }
+// for($i=0;$i<count($all);$i++){
+//   $room=$all[$i];
+//   $sql.= ($i!=0? ",('$room')":"('$room')"); 
+// }
+// echo 
 // echo $sql;
 // die("<hr>");
 
