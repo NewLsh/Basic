@@ -113,12 +113,12 @@ final class Teacher{
 class mess{
   static $s_start="2017-02-04";
   // protected
-   function weekth($date){
+   function weekth($arr){
     // 计算当前第几周
     //开学时间转化为秒数,取天数
     $scday=date('z',strtotime(self::$s_start));
     //传入的时间转化为秒数,去天数
-    $today=date('z',strtotime($date));
+    $today=date('z',strtotime($arr['date']));
     //向上取整为所选周数
     $weekth=ceil(($today-$scday)/7);
     // echo "$scday,$today,$weekth";
@@ -126,14 +126,33 @@ class mess{
     return $weekth;
   }
   //
-  function reg($floor){
-    switch($floor){
-      case 1:
+  function reg($arr){
+    //获得楼的名字
+    switch($arr['floor']){
+      case 0:
         $floor="";break;
+      case 1:
+        $floor="勤政楼";break;
+      case 2:
+        $floor="计科楼";break;
+      case 3:
+        $floor="物理南楼";break;
+      case 4:
+        $floor="化学北楼";break;
     }
-    $week=date('w',$date);
-    $reg="$floor".'.*'.$week.'#'.$th
-    
+    //查询的日期为周几
+    $week=date('w',strtotime($arr['date']));
+    //生成regexp语句
+    $reg="$floor".'.*'.$week.'#'.$arr['course'];
+    //
+    return $reg;
+  }
+  function demand($arr){
+    $reg=$this->reg($arr);
+    $weekth=$this->weekth($arr);
+    $sql="select * from week".$weekth ." where Regexp '$reg'";
+    echo $sql;
+    return $sql;
   }
 }
 

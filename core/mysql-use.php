@@ -10,8 +10,8 @@
 <?php
 require_once './pratice.php';
 if(isset($_REQUEST['submit'])){
-  if(!isset($_REQUEST['date'])){
-    var_dump($_REQUEST['date']);
+  if(isset($_REQUEST['date'])){
+    var_dump($_REQUEST);
     $receive=$_REQUEST;
   }
   
@@ -23,8 +23,10 @@ foreach($receive as $key=>$value){
 }
 $rec=new mess();
 // $rec->weekth($date);
-
-
+$reg=$rec->reg($receive);
+// echo $reg;
+// echo $rec->weekth($receive);
+$rec->demand($receive);
 
 
 
