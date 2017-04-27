@@ -1,9 +1,9 @@
-// function setday() {
-  var day = new Date();
-  var y = getFullYear(day);
-  var m = getMonth(day) + 1;
-  var d = getDay(day);
-  var dat = y +'-'+ m +'-'+d;
-  document.write(dat);
-  document.write("hello a nice day");
-// }
+function setday() {
+  var mydate = new Date();
+  var t2 = mydate.getFullYear();
+  var t3 = mydate.getMonth();
+  var t4 = mydate.getDay();
+  var t5 = t2 + '-' + t3 + '-' + t4;
+  document.write(t5);
+}
+setday();

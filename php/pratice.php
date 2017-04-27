@@ -9,8 +9,11 @@ class student{
     die("连接失败");
   }
   //查询函数
-  public function Rprint($sql){
+  public function Rprint($arr){
     // var_dump ($link);
+    $a=new mess();
+    $reg=$a->reg($arr);
+    $sql="select * from query.allroom where name Regexp '$reg'";
     $res=$this->check($sql);
     while($row=$res->fetch_assoc()){
       echo"<tr>";
@@ -33,16 +36,6 @@ class student{
       die();
     }
     return $res;
-  }
-  protected function Rinsert($sql){
-    if($res=$this->check($sql)){
-      echo "<br/>插入数据成功";
-    }
-  }
-  protected function Rupdate($sql){
-    if($res=$this->check($sql)){
-      echo "<br/>修改数据成功";
-    }
   }
  
 }

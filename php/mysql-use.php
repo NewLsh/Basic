@@ -12,17 +12,17 @@ require_once './pratice.php';
 // var_dump($_POST);
 if(isset($_POST['submit'])){
   // die('请选择查询条件');
-
+  if(empty($_POST['date'])){
+     echo"<script>alert('请选择查询日期');location.href='../lindex.html'</script>";
+  }
   //从表单中获取数据
   foreach($_POST as $key=>$value){
      $$key=$value;
-  }
-  if(!isset($_POST['date'])){
-     die('请选择查询日期');
-  }
+  } 
   //  var_dump($_POST);
-    $receive=$_POST;
-    
+  $receive=$_POST; 
+  $r=new student();
+  $r->Rprint($receive);
 }else{
   echo "<script>alert('forbidden');location.href='../lindex.html'</script>";
 }
