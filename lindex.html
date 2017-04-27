@@ -18,9 +18,9 @@
 	<div class="container">
 	<form action="./core/mysql-use.php" method="post" mutify enctype="multipart/form-data">
 		<div class="col-sm-3 from-group">
-		<label for="">选择日期</label>
-		<input type="date"  class="btn" name="date" ></div>
-		<div class="col-sm-5 form-group">
+		<label for="" >选择日期</label>
+		<input type="date"  class="btn" name="date" select></div>
+		<div class="col-sm-3 form-group">
 		<label for="" class="">选择楼层</label>
 
 		<select name="floor" id="" class='btn' data-toggle="dropdown" >
@@ -31,6 +31,8 @@
 			<option value="3">物理南楼</option>
 			<option value="4">化学北楼</option>
 		</select>
+		</div>
+		<div class="col-sm-3 form-group">
 		<label for="" class="">选择课时</label>
 
 		<select name="course" id="" class='btn' data-toggle="dropdown" >
@@ -44,7 +46,7 @@
 		</div>
 
 		<div class="col-sm-2 form-group"><input type="submit" name="submit" value="查询" class="btn btn-success btn-block "></div>
-		<div class="col-sm-2 form-group"> <input type="reset"   value="重置" class="btn btn-info btn-block"></div> 
+		<div class="col-sm-1 form-group"> <input type="reset"   value="重置" class="btn btn-info btn-block"></div> 
 	
 
 
@@ -58,7 +60,7 @@
 </tr>
 
 	</table>
-	
+	<script src="./js/check.js"></script>
 	
 	</div>
 </body>
