@@ -24,7 +24,8 @@ if(isset($_POST['submit'])){
 }else{
   echo"<script>alert('非法登陆');location.href='SignIn.html'</script>";
 }
- $pdo=new mess(); $pdo->sign($_POST);
+ $pdo=new mess(); 
+ $pdo->sign($_POST);
 ?>
 <div class="container">
   <div class="text-right">
@@ -43,7 +44,6 @@ if(isset($_POST['submit'])){
 <?php
 
 $t->select($_POST);
-
 ?>
 
 

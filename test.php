@@ -6,21 +6,10 @@ if(isset($_POST['submit'])){
     foreach($_POST as $key=>$value){
      $$key=$value;   
     }
-
-    if(!$userid || !$userpwd) {
-       echo"<script>alert('请输入用户名或密码');location.href='SignIn.html'</script>";
-    }
-    $pdo=new mess();
-    $pdo->sign($_POST);
-    $pdo->select($_POST);
-
-    
-}else{
-  echo"<script>alert('非法登陆');location.href='SignIn.html'</script>";
+    $pdo=new mess();   
 }
-  //从表单中获取数据                     
-  foreach($_POST as $key=>$value){
-     $$key=$value;
-  } 
  
 
+$_COOKIE['userid']
+$_REQUEST
+$_SESSION['userid']

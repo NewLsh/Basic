@@ -11,24 +11,35 @@
 </head>
 <body>
 <div class="container">
-<table>
-要调的课程
+<h3>将下列课程</h3>
 
+
+<table class="table table-condensed">
+<?php
+require_once 'php/pratice.php';
+session_start();
+ //echo $_SESSION['userid'];
+ //echo $_COOKIE['id'];
+$arr=array('id' => "$_COOKIE[id]",'userid'=> "$_SESSION[userid]");
+var_dump($arr);
+$a=new teacher();
+$a->insert($arr);
+?>
 
 </table>
+<div class="text-right">
+<button type="submit" class="btn btn-info" onclick="confirm('确定要提交吗')">提交</button>
+<button class="btn btn-default" onclick="window.close()">取消</button>
+</div>
 
-e
+<h4>调换至</h4>
 <table>
-调还的教室
 <?php
 
 ?>
 </table>
 
 
-
-<button>提交</button>
-<button>取消</button>
 
 </div>
 </body>

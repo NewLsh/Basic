@@ -66,7 +66,7 @@ final class Teacher{
       <td>{$row['name']}</td>
       <td>{$row['room']}</td>
       <td>{$row['class_name']}</td>
-      <td><a href='#' onclick=window.open('./manage.html?id={$row['roomid']}&userid={$userid}','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')>调课 </a> </td>
+      <td><a href='#' onclick=window.open('./change.html?id={$row['roomid']}','','height=800,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')>调课 </a> </td>
       </tr>";
     }
      
@@ -84,15 +84,34 @@ final class Teacher{
     }
     echo $num; 
   } 
-
+  function toVar($arr){
+    foreach($arr as $key=>$value){
+      $$key=$value;
+    }
+  }
   //插入数据方法
-  protected function insert($sql){
+  // protected
+   function insert($arr){
     try{
-       $dbh=$this->link();
-      $res=$dbh->exec($sql);
-      if(!$res){
-        throw new PDOException('插入数据失败');
-        }
+      $dbh=$this->link();
+      // $this->toVar($arr);
+      foreach($arr as $key=>$value){
+      $$key=$value;
+    }
+      $sql="select * from week1 where teacherid='$userid' and roomid='$id'";
+      $stmt=$dbh->query($sql);
+      while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      foreach($row as $k=>$v){
+        $$k=$v;
+      }
+      echo"<tr class='warning'>
+      <td>{$row['name']}</td>
+      <td>{$row['room']}</td>
+      <td>{$row['class_name']}</td>
+      </tr>";
+      }
+      
+      $sql="insert into query.week2 values ('')";
     }catch (PDOException $e){
       print "Error!:". $e->getMessage() .'<br/>';
       echo "Error!:".$e->getCode().'<br/>';
@@ -102,9 +121,10 @@ final class Teacher{
     // return $res;
   }
   //删除数据方法
-  protected function delete($sql){
+  protected function delete($arr){
     try{
        $dbh=$this->link();
+       //调用mess的sql语句生成方法
       $res=$dbh->exec($sql);
       if(!$res){
         throw new PDOException('删除数据失败');
@@ -112,14 +132,10 @@ final class Teacher{
     }catch (PDOException $e){
       print "Error!:". $e->getMessage() .'<br/>';
       echo "Error!:".$e->getCode().'<br/>';
-      // var_dump($e->getTrace());
       die();
     }
     // return $res;
   }
-  //生成sql插入语句
-  //生成sql删除语句
-
   //数据修改,调用删除和插入方法
   public function change($sql1,$sql2){
     try{
@@ -212,6 +228,8 @@ class mess{
       $row=$stmt->fetch( PDO::FETCH_ASSOC );
       if($row['pwd']==$userpwd){
          echo"<script>alert('登陆成功');</script>";
+         session_start();
+        $_SESSION['userid']="$userid";
       }else{
       echo"<script>alert('用户名或密码错误');location.href='SignIn.html'</script>";
       } 
@@ -224,8 +242,5 @@ class mess{
   }
 }
 }
-
-
-
 
 
