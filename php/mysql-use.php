@@ -15,6 +15,14 @@ if(isset($_POST['submit'])){
   if(empty($_POST['date'])){
      echo"<script>alert('请选择查询日期');location.href='../lindex.html'</script>";
   }
+  $a=date('z',strtotime($_POST['date']));
+  $b=date('z',time());
+  echo '<pre>';
+  echo $a,'<hr>',$b,'<br>';
+  if($a<$b){
+     echo"<script>alert('请选择正确的日期');location.href='../lindex.html'</script>";
+    
+  }
   //从表单中获取数据
   foreach($_POST as $key=>$value){
      $$key=$value;
@@ -29,7 +37,7 @@ if(isset($_POST['submit'])){
 
 
 
-//遍历接到的数组
+//遍历接到的数组p p
 
 die();
 

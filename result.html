@@ -14,12 +14,21 @@
 <body>
   <?php
 require_once './php/pratice.php';
-// var_dump($_POST);
+ //var_dump($_POST);
 if(isset($_POST['submit'])){
   // die('请选择查询条件');
   if(empty($_POST['date'])){
      echo"<script>alert('请选择查询日期');location.href='./lindex.html'</script>";
-  }}else{
+  }
+    $a=date('z',strtotime($_POST['date']));
+    $b=date('z',time());
+    if($a < $b){
+ echo"<script>alert('请选择正确的日期');location.href='./lindex.html'</script>"; 
+
+    }
+    
+  
+  }else{
   echo "<script>alert('forbidden'); location.href = './lindex.html'</script>";
 }
 
@@ -42,26 +51,22 @@ if(isset($_POST['submit'])){
         <div class="col-sm-3 from-group">
           <label for="">选择日期</label>
           <input type="date" class="btn" name="date"></div>
-        <div class="col-sm-3 form-group">
+    <div class="col-sm-3 form-group">
           <label for="" class="">选择楼层</label>
-
-          <select name="floor" id="" class='btn' data-toggle="dropdown">
-			
+      <select name="floor" id="" class='btn' data-toggle="dropdown">
 			<option value="0">全部</option>
 			<option value=1>勤政楼</option>
 			<option value="2">计科楼</option>
 			<option value="3">物理南楼</option>
 			<option value="4">化学北楼</option>
 		</select>
-        </div>
-        <div class="col-sm-3 form-group">
+    </div>
+    <div class="col-sm-3 form-group">
           <label for="" class="">选择课时</label>
-
-          <select name="course" id="" class='btn' data-toggle="dropdown">
-			
-			<option value="1">早上一二节</option>
+      <select name="course" id="" class='btn' data-toggle="dropdown">			
+			<option value="1" >早上一二节</option>
 			<option value="2">早上三四节</option>
-			<option value="3">第三课时</option>
+			<option value="3" selected>第三课时</option>
 			<option value="4">第四课时</option>
 			<option value="5">第五课时</option>
 		</select>
@@ -80,7 +85,7 @@ if(isset($_POST['submit'])){
           <td>教室规模</td>
           <td>操作</td>
         </tr>
-        <?php
+<?php
   //从表单中获取数据
   foreach($_POST as $key=>$value){
      $$key=$value;

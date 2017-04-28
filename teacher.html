@@ -5,45 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>查询空余教室</title>
+  <title>教师用户</title>
   <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
   <script src="./bootstrap/jquery.js"></script>
   <script src="./bootstrap/bootstrap.min.js"></script>
 </head>
 <body>
 <?php 
-require_once './core/pratice.php';
+require_once 'php/pratice.php';
+if(isset($_POST['submit'])){
+    foreach($_POST as $key=>$value){
+     $$key=$value;   
+    }
+    if(!$userid || !$userpwd) {
+       echo"<script>alert('请输入用户名或密码');location.href='SignIn.html'</script>";
+    }
+    
+}else{
+  echo"<script>alert('非法登陆');location.href='SignIn.html'</script>";
+}
+ $pdo=new mess(); $pdo->sign($_POST);
 ?>
 <div class="container">
   <div class="text-right">
     <a href="lindex.html">安全退出</a>
   </div>
 <h3>问候,$user</h3>
-<h4>本周您共有$num节课程</h4>
-
-
-弹窗
-
-
-
-
-记得弹小窗口!!!!
-
-
-<a href="#" onclick=<?php $a=new mess();$a->small() ?>>小窗口</a>
-
+<h4>本周您共有<?php $t=new teacher();$t->getCount($_POST);?>节课程</h4>
 
 <table class="table table-hover">
   <tr>
-    <td>授课时间</td>
-    <td>授课地点</td>
     <td>课程名称</td>
+    <td>授课地点</td>
+    <td>上课班级</td>
     <td>操作</td>
   </tr>
+<?php
+
+$t->select($_POST);
+
+?>
+
+
 
 </table>
-
-
 
 
 </div>

@@ -11,28 +11,28 @@
 </head>
 <body>
 	<div class="container">
-		<form action="./teacher.html">
+		<form action="teacher.html" method="post" mutify enctype="multipart/form-data">
 			<div style="position: relative;top: 200px" class="form-group">
 				<h2>登陆</h2>
 				
-				<!--邮箱-->
+				<!--用户账号-->
 				<div class="col-lg-8 "></div>
 				<div class="col-lg-4 ">
-					<label for="userEmail">请输入邮箱</label>
-					<input type="email" class="form-control" placeholder="输入邮箱">
+					<label for="userEmail">请输入教职工编号</label>
+					<input type="text" class="form-control" placeholder="你的教职工编号" name='userid'>
 				</div>
 				<!--密码-->
 				<div class="col-lg-8 "></div>
 				<div class="col-lg-4 ">
 					<label for="userEmail">请输入密码</label>
-					<input type="password" class="form-control" placeholder="输入密码">
+					<input type="password" class="form-control" placeholder="输入密码" name='userpwd'>
 				</div>
 
 				<div class="col-lg-12">&nbsp</div>
 				<!--提交按钮-->
 				<div class="form-group">
 					<div class="col-lg-offset-8 col-lg-4">
-						<button type="submit" class="btn btn-success btn-lg col-lg-12">登陆</button>
+						<button type="submit" name='submit' class="btn btn-success btn-lg col-lg-12">登陆</button>
 					</div>
 				</div>
 				<!--去注册-->

@@ -32,7 +32,7 @@ class student{
       echo "<br/>查询出错,错误信息如下:";
       echo "<br/>错误信息:".$link->error;
       echo "<br/>错误信息:".$link->errno;
-      echo "<br/>查询语句:".$sql;
+      echo "<br/>查询语句为:".$sql;
       die();
     }
     return $res;
@@ -40,21 +40,55 @@ class student{
  
 }
 final class Teacher{
-  // protected
-  // protected 
+  // protected  
   function link($user='root',$pwd='9539'){
     try{
     $link=new PDO('mysql:host=localhost;dbname=query',$user,$pwd,array(PDO::ATTR_PERSISTENT=>TRUE));
+    $link->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); 
     }catch (PDOException $e) {
       print "Error!:".$e->getMessage().'<br/>';
       die();
     }
     return $link;
   }
-  public function insert($sql){
-    $dbh=$this->link();
+  //进入教师界面,需要调用教师课程查询
+  function select($arr){
+     foreach($_POST as $key=>$value){
+     $$key=$value;
+     }//遍历数组生成变量
+    $sql="select name,room,class_name,roomid from query.course where  teacherid = $userid";
+    $db=$this->link();
+    $stmt=$db->query($sql);
+    //调用小窗口类
+    $mess=new mess(); 
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      echo"<tr>
+      <td>{$row['name']}</td>
+      <td>{$row['room']}</td>
+      <td>{$row['class_name']}</td>
+      <td><a href='#' onclick=window.open('./manage.html?id={$row['roomid']}&userid={$userid}','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')>调课 </a> </td>
+      </tr>";
+    }
+     
+  } 
+  function getCount($arr){
+     foreach($_POST as $key=>$value){
+     $$key=$value;
+     }//遍历数组生成变量
+    $sql="select name,room,class_name from query.course where  teacherid = $userid";
+    $db=$this->link();
+    $stmt=$db->query($sql);
+    $num=0;
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $num++;
+    }
+    echo $num; 
+  } 
+
+  //插入数据方法
+  protected function insert($sql){
     try{
-      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+       $dbh=$this->link();
       $res=$dbh->exec($sql);
       if(!$res){
         throw new PDOException('插入数据失败');
@@ -67,10 +101,29 @@ final class Teacher{
     }
     // return $res;
   }
+  //删除数据方法
+  protected function delete($sql){
+    try{
+       $dbh=$this->link();
+      $res=$dbh->exec($sql);
+      if(!$res){
+        throw new PDOException('删除数据失败');
+        }
+    }catch (PDOException $e){
+      print "Error!:". $e->getMessage() .'<br/>';
+      echo "Error!:".$e->getCode().'<br/>';
+      // var_dump($e->getTrace());
+      die();
+    }
+    // return $res;
+  }
+  //生成sql插入语句
+  //生成sql删除语句
+
+  //数据修改,调用删除和插入方法
   public function change($sql1,$sql2){
     try{
       $dbh=$this->link();
-      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       $dbh->beginTransaction();
       $sta=$dbh->query($sql1);
       if(!$sta){
@@ -84,11 +137,8 @@ final class Teacher{
       
     }catch (PDOException $e){
       $dbh->rollback();
-      print "Error!:". $e->getMessage() .'<br/>';
-    
+      print "Error!:". $e->getMessage() .'<br/>';    
       echo "Error!:".$e->getCode().'<br/>';
-
-      // var_dump($e->getTrace());
       die();
     }
   }
@@ -144,10 +194,35 @@ class mess{
     return $sql;
   }
   // 创建小窗口的方法
-  static function small(){
-    $small="javascript:window.open('./manage.html','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')";
-    echo $small;
+  static function small($a){
+    echo "<a href='#' onclick=window.open('./manage.html?id={$a}&userid={}','','height=200,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')>调课</a>";
+    
   }
+  //教室用户登陆验证
+  function sign($arr){
+    foreach($arr as $key=>$value){
+     $$key=$value;   
+    }
+    try{
+      //准备数据库连接
+      $db=new teacher();
+      $pdo=$db->link();
+      $sql="select pwd from query.teachers where id = $userid";
+      $stmt=$pdo->query($sql);
+      $row=$stmt->fetch( PDO::FETCH_ASSOC );
+      if($row['pwd']==$userpwd){
+         echo"<script>alert('登陆成功');</script>";
+      }else{
+      echo"<script>alert('用户名或密码错误');location.href='SignIn.html'</script>";
+      } 
+      // var_dump($row);
+    }catch (PDOException $e){
+      print "Error!:". $e->getMessage() .'<br/>';    
+      echo "Error!:".$e->getCode().'<br/>';
+      die();
+
+  }
+}
 }
 
 
