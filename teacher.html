@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
   <div class="text-right">
     <a href="lindex.html">安全退出</a>
   </div>
-<h3>问候,$user</h3>
+<h3>问候<?php echo $_SESSION['user'];?></h3>
 <h4>本周您共有<?php $t=new teacher();$t->getCount($_POST);?>节课程</h4>
 
 <table class="table table-hover">

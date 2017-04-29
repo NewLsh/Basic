@@ -19,16 +19,20 @@
 require_once 'php/pratice.php';
 session_start();
  //echo $_SESSION['userid'];
- //echo $_COOKIE['id'];
+ //echo $_COOKIE['uid'];
 $arr=array('id' => "$_COOKIE[id]",'userid'=> "$_SESSION[userid]");
+if(isset($_COOKIE['uid'])){
+  $uid=$_COOKIE['uid'];
+  $arr['uid']=$uid;
+}
 var_dump($arr);
 $a=new teacher();
-$a->insert($arr);
+$a->tselect($arr);
 ?>
 
 </table>
 <div class="text-right">
-<button type="submit" class="btn btn-info" onclick="confirm('确定要提交吗')">提交</button>
+<button type="submit" class="btn btn-info" onclick="confirm('确定要提交吗')? location.href='test.php':''">提交</button>
 <button class="btn btn-default" onclick="window.close()">取消</button>
 </div>
 

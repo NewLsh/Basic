@@ -90,7 +90,6 @@ if(isset($_POST['submit'])){
   foreach($_POST as $key=>$value){
      $$key=$value;
   } 
-  //  var_dump($_POST);
   $receive=$_POST; 
   $r=new student();
   $r->Rprint($receive);
@@ -99,15 +98,4 @@ if(isset($_POST['submit'])){
 
     </div>
 </body>
-
-</html>  //  var_dump($_POST);
-  $receive=$_POST; 
-  $r=new student();
-  $r->Rprint($receive);
-?>
-      </table>
-
-    </div>
-</body>
-
 </html>

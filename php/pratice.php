@@ -8,7 +8,7 @@ class student{
     }
     die("连接失败");
   }
-  //查询函数
+  //首页查询函数
   public function Rprint($arr){
     // var_dump ($link);
     $a=new mess();
@@ -21,6 +21,24 @@ class student{
       echo"<td>{$row['name']}</td>";
       echo"<td>{$row['size']}</td>";
       echo"</tr>";
+    }}
+    //down页面查询结果显示
+  public function Downprint($arr){
+    // var_dump ($link);
+    $a=new mess();
+    $weekth=$a->weekth($arr);
+    $weeke='week'.$weekth;
+    $_SESSION['weeke']=$weeke;
+    $reg=$a->reg($arr);
+    $sql="select * from query.allroom where name Regexp '$reg'";
+    $res=$this->check($sql);
+    while($row=$res->fetch_assoc()){
+      echo"<tr>
+      <td>{$row['id']}</td>
+      <td>{$row['name']}</td>
+      <td>{$row['size']}</td>
+      <td><input type='radio' name='rid' onclick='setcokie({$row['id']})'></td>
+      </tr>";
     }
     
   }
@@ -40,6 +58,7 @@ class student{
  
 }
 final class Teacher{
+   static $s_start="2017-02-04";
   // protected  
   function link($user='root',$pwd='9539'){
     try{
@@ -56,7 +75,8 @@ final class Teacher{
      foreach($_POST as $key=>$value){
      $$key=$value;
      }//遍历数组生成变量
-    $sql="select name,room,class_name,roomid from query.course where  teacherid = $userid";
+     $week=$this->GetWeekth(time());
+    $sql="select name,room,class_name,roomid from query.{$week} where  teacherid = $userid";
     $db=$this->link();
     $stmt=$db->query($sql);
     //调用小窗口类
@@ -66,7 +86,7 @@ final class Teacher{
       <td>{$row['name']}</td>
       <td>{$row['room']}</td>
       <td>{$row['class_name']}</td>
-      <td><a href='#' onclick=window.open('./change.html?id={$row['roomid']}','','height=800,width=800,top=200,left=200,depended=1,directories=no,titlebar=no,memubar=no,scorollbars=yes,resizeable=no,location=1,status=no')>调课 </a> </td>
+      <td><a href=\"javascript:if(confirm('调课操作不可撤回,真的要修改吗?')){window.location.href='change.html?id={$row['roomid']}';};\">调课</a> </td>
       </tr>";
     }
      
@@ -75,7 +95,8 @@ final class Teacher{
      foreach($_POST as $key=>$value){
      $$key=$value;
      }//遍历数组生成变量
-    $sql="select name,room,class_name from query.course where  teacherid = $userid";
+    $week=$this->GetWeekth(time());
+    $sql="select name,room,class_name,roomid from query.{$week} where  teacherid = $userid";
     $db=$this->link();
     $stmt=$db->query($sql);
     $num=0;
@@ -84,23 +105,18 @@ final class Teacher{
     }
     echo $num; 
   } 
-  function toVar($arr){
-    foreach($arr as $key=>$value){
-      $$key=$value;
-    }
-  }
-  //插入数据方法
+  //输出所选课程(想调还的课)方法
   // protected
-   function insert($arr){
+   function tselect($arr){
     try{
       $dbh=$this->link();
-      // $this->toVar($arr);
       foreach($arr as $key=>$value){
       $$key=$value;
     }
-      $sql="select * from week1 where teacherid='$userid' and roomid='$id'";
+    $week=$this->GetWeekth(time()); $sql="select * from query.$week where teacherid='$userid' and roomid='$id'";
       $stmt=$dbh->query($sql);
       while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $_SESSION['weekb']=$week;
       foreach($row as $k=>$v){
         $$k=$v;
       }
@@ -110,8 +126,6 @@ final class Teacher{
       <td>{$row['class_name']}</td>
       </tr>";
       }
-      
-      $sql="insert into query.week2 values ('')";
     }catch (PDOException $e){
       print "Error!:". $e->getMessage() .'<br/>';
       echo "Error!:".$e->getCode().'<br/>';
@@ -120,21 +134,44 @@ final class Teacher{
     }
     // return $res;
   }
+  //插入数据
+  function insert($arr){
+    foreach($arr as $k=>$v){
+      $$k=$v;
+    }
+    $dbh=$this->link();
+    $sql="select * from $weekb where roomid=$id and teacherid=$userid";
+    // echo $sql;
+    $stmt=$dbh->query($sql);
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      // var_dump($row);
+      @$sql="insert into query.$weeke values ($row[teacherid],'$row[name]','$row[room]','$row[class_name]',$uid)";
+    }
+    // echo $sql;
+    $a=$dbh->exec($sql);
+    if(!$a){
+      die('插入失败');
+    }
+    return  true;
+  }
   //删除数据方法
-  protected function delete($arr){
+   function delete($arr){
+    foreach($arr as $k=>$v){
+      $$k=$v;
+    }
     try{
-       $dbh=$this->link();
-       //调用mess的sql语句生成方法
+    $dbh=$this->link();
+    $sql="delete from query.$weekb where roomid=$id and teacherid=$userid";
       $res=$dbh->exec($sql);
       if(!$res){
         throw new PDOException('删除数据失败');
         }
+      return true;
     }catch (PDOException $e){
       print "Error!:". $e->getMessage() .'<br/>';
       echo "Error!:".$e->getCode().'<br/>';
       die();
     }
-    // return $res;
   }
   //数据修改,调用删除和插入方法
   public function change($sql1,$sql2){
@@ -159,8 +196,19 @@ final class Teacher{
     }
   }
 
-
-
+//获取当前第多少周
+function GetWeekth($date){
+     //开学时间转化为秒数,取天数
+    $scday=date('z',strtotime(self::$s_start));
+    //传入的时间转化为秒数,去天数
+    $today=date('z',$date);
+    //向上取整为所选周数
+    $weekth=ceil(($today-$scday)/7);
+    // echo "$scday,$today,$weekth";
+    //返回周数
+    $weekth='week'.$weekth;
+    return $weekth;
+  }
 }
 
 //杂乱的功能
@@ -223,13 +271,15 @@ class mess{
       //准备数据库连接
       $db=new teacher();
       $pdo=$db->link();
-      $sql="select pwd from query.teachers where id = $userid";
+      $sql="select name,pwd from query.teachers where id = $userid";
       $stmt=$pdo->query($sql);
       $row=$stmt->fetch( PDO::FETCH_ASSOC );
       if($row['pwd']==$userpwd){
          echo"<script>alert('登陆成功');</script>";
+        //  setcookie('user',$row['name']);
          session_start();
         $_SESSION['userid']="$userid";
+        $_SESSION['user']="$row[name]";
       }else{
       echo"<script>alert('用户名或密码错误');location.href='SignIn.html'</script>";
       } 
@@ -238,9 +288,8 @@ class mess{
       print "Error!:". $e->getMessage() .'<br/>';    
       echo "Error!:".$e->getCode().'<br/>';
       die();
-
   }
-}
+  }
 }
 
 

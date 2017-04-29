@@ -8,10 +8,25 @@
   <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
 	<script src="./bootstrap/jquery.js"></script>
 	<script src="./bootstrap/bootstrap.min.js"></script>
+	<script src="function.js"></script>
 </head>
 <body>
+  <?php
+require_once './php/pratice.php';
+ //var_dump($_POST);
+ session_start();
+if(isset($_SESSION['userid'])){
+   $s_start="2017-02-04";
+    $scday=date('z',strtotime($s_start));
+  $today=date('z',time());
+  $weekth=ceil(($today-$scday)/7);
+  $nxweek=$weekth+1;
+  }else{
+  echo "<script>alert('非法访问'); location.href = './lindex.html'</script>";
+}
+?>
   <div class="container">
-  <form action="result.html" method="post" mutify enctype="multipart/form-data">
+  <form action="" method="post" mutify enctype="multipart/form-data">
     <div class="col-sm-3 from-group">
       <label for="">选择日期</label>
       <input type="date" class="btn" name="date"></div>
@@ -41,10 +56,6 @@
     </div>
 
     <div class="col-sm-2 form-group"><input type="submit" name="submit" value="查询" class="btn btn-success btn-block "></div>
-    <div class="col-sm-1 form-group"> <input type="reset" value="重置" class="btn btn-info btn-block"></div>
-
-
-
   </form>
   <table class="table table-striped">
     <tr>
@@ -53,9 +64,19 @@
       <td>教室规模</td>
       <td>操作</td>
     </tr>
-
+<?php
+  //从表单中获取数据
+  foreach($_POST as $key=>$value){
+     $$key=$value;
+  } 
+  //  var_dump($_POST);
+if(isset($_POST['submit'])){
+  $receive=$_POST; 
+  $r=new student();
+  $r->Downprint($receive);
+}
+?>
   </table>
-
 </div>
   
 </body>
