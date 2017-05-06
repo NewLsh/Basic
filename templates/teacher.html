@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en"
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,44 +10,30 @@
   <script src="./bootstrap/bootstrap.min.js"></script>
 </head>
 <body>
-<?php 
-require_once 'php/pratice.php';
-if(isset($_POST['submit'])){
-    foreach($_POST as $key=>$value){
-     $$key=$value;   
-    }
-    if(!$userid || !$userpwd) {
-       echo"<script>alert('请输入用户名或密码');location.href='SignIn.html'</script>";
-    }
-    
-}else{
-  echo"<script>alert('非法登陆');location.href='SignIn.html'</script>";
-}
- $pdo=new mess(); 
- $pdo->sign($_POST);
-?>
 <div class="container">
   <div class="text-right">
-    <a href="lindex.html">安全退出</a>
+    <a href="ps_info.php">个人中心</a>
+    <span>你好,{$username}&nbsp&nbsp</span>
+    <a href="index.php">安全退出</a>
   </div>
-<h3>问候<?php echo $_SESSION['user'];?></h3>
-<h4>本周您共有<?php $t=new teacher();$t->getCount($_POST);?>节课程</h4>
-
-<table class="table table-hover">
+  <h4>本周的课程如下</h4>
+  <table class="table table-hover">
   <tr>
     <td>课程名称</td>
     <td>授课地点</td>
     <td>上课班级</td>
     <td>操作</td>
   </tr>
-<?php
+  {foreach $data as $val}
+    <tr>
+      <td>{$val.name}</td>
+      <td>{$val.room}</td>
+      <td>{$val.class_name}</td>
+      <td><a href="change.html?id={$val.roomid}">调课</a> | <a href="update.html?id={$val.roomid}">编辑</a></td>
+    </tr>
 
-$t->select($_POST);
-?>
-
-
-
-</table>
+  {/foreach}
+  </table>
 
 
 </div>

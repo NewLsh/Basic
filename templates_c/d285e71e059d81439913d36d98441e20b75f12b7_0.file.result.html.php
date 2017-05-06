@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-05-06 13:56:00
+  from "E:\apache\htdocs\query\templates\result.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_590d6570455b56_47136990',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'd285e71e059d81439913d36d98441e20b75f12b7' => 
+    array (
+      0 => 'E:\\apache\\htdocs\\query\\templates\\result.html',
+      1 => 1494050160,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_590d6570455b56_47136990 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +30,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>查询空余教室</title>
   <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
-  <script src="./bootstrap/jquery.js"></script>
-  <script src="./bootstrap/bootstrap.min.js"></script>
+  <?php echo '<script'; ?>
+ src="./bootstrap/jquery.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="./bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
+>
 </head>
 <body>
 
@@ -63,16 +91,30 @@
         <td>教室规模</td>
         <td>操作</td>
       </tr>
-      {foreach $data as $v}
+      <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['data']->value, 'v');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['v']->value) {
+?>
         <tr>
-          <td>{$v.id}</td>
-          <td>{$v.name}</td>
-          <td>{$v.size}</td>          
+          <td><?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
+</td>
+          <td><?php echo $_smarty_tpl->tpl_vars['v']->value['name'];?>
+</td>
+          <td><?php echo $_smarty_tpl->tpl_vars['v']->value['size'];?>
+</td>          
           <td>无</td>
         </tr>
-      {/foreach}
+      <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
     </table>
   </div>
 </body>
 
 </html>
+<?php }
+}

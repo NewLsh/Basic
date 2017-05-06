@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>个人中心</title>
+   <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+  <script src="./bootstrap/jquery.js"></script>
+  <script src="./bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+     <div class="col-sm-4 "><a href="#">修改密码</a></div> 
+     <div class="col-sm-4 "><a href="#">返回主页</a></div> 
+    <h3>个人信息</h3>
+    <table class="table">
+      {foreach $info as $val}
+      <tr>
+        <td>教职工编号</td>
+        <td>{$val.id}</td>
+      </tr>
+      <tr>
+        <td>姓名</td>
+        <td>{$val.name}</td>
+      </tr>
+      <tr>
+        <td>性别</td>
+        <td>{$val.sex}</td>
+      </tr>
+      <tr>
+        <td>年龄</td>
+        <td>{$val.age}</td>
+      </tr>
+      {/foreach}
+    </table>
+  </div>
+ 
+  
+</body>
+</html>
