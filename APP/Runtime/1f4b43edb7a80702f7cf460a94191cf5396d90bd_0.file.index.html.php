@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-07 20:16:02
+/* Smarty version 3.1.30, created on 2017-05-07 21:09:03
   from "E:\blog\App\Admin\View\Index\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_590f10024c5e44_31730345',
+  'unifunc' => 'content_590f1c6f640bd7_30431034',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f4b43edb7a80702f7cf460a94191cf5396d90bd' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Index\\index.html',
-      1 => 1494159347,
+      1 => 1494162090,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_590f10024c5e44_31730345 (Smarty_Internal_Template $_smarty_tpl) {
+function content_590f1c6f640bd7_30431034 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -94,7 +94,7 @@ function content_590f10024c5e44_31730345 (Smarty_Internal_Template $_smarty_tpl)
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="?p=back&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
+                        <li><a href="?m=Admin&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
                         <li><a href="?p=back&c=Blog"><i class="icon-font">&#xe005;</i>博文管理</a></li>
                         <li><a href="#"><i class="icon-font">&#xe012;</i>评论管理</a></li>
                         <li><a href="#"><i class="icon-font">&#xe052;</i>友情链接</a></li>
