@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>学生列表</title>
+</head>
+
+<body>
+  <h2 align="center">学生列表</h2>
+  <table border="1" cellspacing="0" cellpadding="2" rules="all" width='90%' align="center">
+    <tr>
+      <th>ID</th>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>年龄</th>
+      <th>学历</th>
+      <th>城市</th>
+      <th>操作</th>
+    </tr>
+    {foreach $data as $val}
+    <tr>
+      <td>{$val.id}</td>
+      <td>{$val.name}</td>
+      <td>{$val.sex}</td>
+      <td>{$val.age}</td>
+      <td>{$val.edu}</td>
+      <td>{$val.city}</td>
+      <td>
+        <a href="index.php?c=Student&a=studentDel&id={$val.id}">删除</a>
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+  <table border="1" cellspacing="0" cellpadding="2" rules="all" width='90%' align="center">
+    <tr>
+      <td>
+        总计
+        <?php //echo $count;?>个学生
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
