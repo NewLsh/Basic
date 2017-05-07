@@ -101,7 +101,7 @@ public function add($sql,$params = array()){
         }
       }
     }   
-    $stmt->excute();
+    $stmt->execute();
     $data= $stmt->fetch(PDO::FETCH_ASSOC);
     return $data;
     }catch(PDOException $e){
@@ -120,7 +120,7 @@ public function add($sql,$params = array()){
         }
       }
     }   
-    $stmt->excute();
+    $stmt->execute();
     $data= $stmt->fetchColumn($columnNum);
     return $data;
     }catch(PDOException $e){
@@ -139,7 +139,7 @@ public function add($sql,$params = array()){
         }
       }
     }   
-    $stmt->excute();
+    $stmt->execute();
     return $stmt->fetchColumn();
       }catch(PDOException $e){
       $this->getERR($e);
