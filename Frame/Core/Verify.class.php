@@ -5,6 +5,7 @@ class Verify{
     //header
     header('content-type:image/png');
     //创建一个图片
+    $yzm;
     $font_siz=48;
     $img_l=200;
     $img_h=70;
@@ -24,8 +25,11 @@ class Verify{
       $a=$l*$i;#+$font_siz;
       $b=$l*($i+1);
       $str=str_shuffle($b_str)[1];
+      $yzm.=$str;
       imagettftext($img,$font_siz,mt_rand(-30,30),mt_rand($a,$b),mt_rand(50,60),$ttfcolor, CORE_DIR.'Deng.ttf',$str);
     }
+    // var_dump($yzm);
+    $_SESSION['yzm']=$yzm;
    
     
     //imagestring($img,5,10,0,'a',$ttfcolor);

@@ -11,11 +11,12 @@ class LoginController extends Controller{
       echo "<script>alert('验证码错误');history.back();</script>";
       return;
     }
+
     $login=Factory::M('Login'); //new LoginModel()
     if($login->check()){
-      echo "<script>alert('登陆成功');location.href='index.php?m=Admin';</script>";
+      echo "<script>alert('登陆成功');location.href='index.php?m=Admin';</script>";      
     }else{
-      echo "<script>alert('登陆失败');history.back();'</script>";
+      echo "<script>alert('登陆失败');history.back();</script>";
     }
     
   }

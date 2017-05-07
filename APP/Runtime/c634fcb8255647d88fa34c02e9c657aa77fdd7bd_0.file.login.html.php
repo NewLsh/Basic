@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-07 17:11:31
+/* Smarty version 3.1.30, created on 2017-05-07 19:57:25
   from "E:\blog\App\Admin\View\Login\login.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_590ee4c3931c58_25333019',
+  'unifunc' => 'content_590f0ba5194a96_70166540',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c634fcb8255647d88fa34c02e9c657aa77fdd7bd' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Login\\login.html',
-      1 => 1494148261,
+      1 => 1494158244,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_590ee4c3931c58_25333019 (Smarty_Internal_Template $_smarty_tpl) {
+function content_590f0ba5194a96_70166540 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html>
@@ -97,7 +97,7 @@ background: -o-linear-gradient(top, #ccc, #fff);  /*Opera 11.10+*/
                             <th>验证码：</th>
                             <td>
                                 <input class="common-text required" name="yzm" size="4" value="" type="text">
-                                <img src="?m=Admin&c=Login&a=pryzm" width="80" height="30" onclick="this.src='?m=Admin&c=Login&a=pryzm+Math.random()">
+                                <img src="?m=Admin&c=Login&a=pryzm" width="80" height="30" onclick="this.src='?m=Admin&c=Login&a=pryzm&Math.random()'">
                             </td>
                         </tr>
                         <tr>

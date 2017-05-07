@@ -11,7 +11,7 @@ class Frame{
     session_start();
   }
   private static function getParams(){
-    $m=isset($_GET['m'])? $_GET['m'] : 'Home';
+    $m=isset($_GET['m'])? $_GET['m'] : 'Admin';
     $c=isset($_GET['c'])? $_GET['c'] : 'Index';
     $a=isset($_GET['a'])? $_GET['a'] : 'index';
     define('M',$m);  //模块 平台 分组
