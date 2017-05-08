@@ -10,4 +10,11 @@ class ArticleModel extends Model{
     }
     // echo $sql;
   }
+  public function insert(){
+    echo'<pre>';
+    $sql="insert into article (title,category_id,author,content,ptime,hits,`order`) values (:title,:category_id,:author,:content,:ptime,:hits,:'order')";
+    $_POST['hits']=mt_rand(0,10000);
+    print_r($_POST);
+     return $this->add($sql,$_POST);    
+  }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-08 15:47:37
+/* Smarty version 3.1.30, created on 2017-05-08 15:54:57
   from "E:\blog\App\Admin\View\Article\showArt.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_591022999e55d3_95652983',
+  'unifunc' => 'content_59102451189ee7_18650041',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fd8991c771e81dcb58b74c25867d1005a8e67c74' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Article\\showArt.html',
-      1 => 1494229587,
+      1 => 1494230096,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../Public/left.html' => 1,
   ),
 ),false)) {
-function content_591022999e55d3_95652983 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59102451189ee7_18650041 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -116,7 +116,7 @@ function content_591022999e55d3_95652983 (Smarty_Internal_Template $_smarty_tpl)
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="?p=back&c=Blog&a=Add"><i class="icon-font"></i>添加文章</a>
+                        <a href="?m=Admin&c=Article&a=Add"><i class="icon-font"></i>添加文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                     </div>
                 </div>
