@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-08 12:02:31
+/* Smarty version 3.1.30, created on 2017-05-08 15:47:36
   from "E:\blog\App\Admin\View\Category\showCate.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_590fedd769a834_14042117',
+  'unifunc' => 'content_59102298de0be4_18047364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7e082b3a4d44063806bebdab97fa58d9e6f05743' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Category\\showCate.html',
-      1 => 1494215825,
+      1 => 1494229630,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:../Public/left.html' => 1,
   ),
 ),false)) {
-function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59102298de0be4_18047364 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -83,33 +84,9 @@ function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl)
     <!--左侧菜单栏-->
     
     <!--左侧菜单栏 begin-->
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <h1>菜单</h1>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
-                    <ul class="sub-menu">
-                        <li><a href="?p=back&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe005;</i>博文管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe006;</i>分类管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe052;</i>友情链接</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="#"><i class="icon-font">&#xe017;</i>系统设置</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe046;</i>数据备份</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe045;</i>数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+ <?php $_smarty_tpl->_subTemplateRender("file:../Public/left.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
     <!--左侧菜单栏 begin-->
     
     <!--右侧主操作区-->
@@ -177,6 +154,8 @@ em;"><?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
                             <td>
                                 <a class="link-update" href="#">修改</a>
                                 <a class="link-del" href="#">删除</a>
+                                <a class="link-del" href="?m=Admin&c=Article&a=showArticle&cid=<?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+">文章列表</a>
                             </td>
                         </tr>
                         <?php

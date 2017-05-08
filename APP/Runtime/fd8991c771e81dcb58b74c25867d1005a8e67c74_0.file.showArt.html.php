@@ -1,3 +1,28 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-05-08 15:47:37
+  from "E:\blog\App\Admin\View\Article\showArt.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_591022999e55d3_95652983',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'fd8991c771e81dcb58b74c25867d1005a8e67c74' => 
+    array (
+      0 => 'E:\\blog\\App\\Admin\\View\\Article\\showArt.html',
+      1 => 1494229587,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../Public/left.html' => 1,
+  ),
+),false)) {
+function content_591022999e55d3_95652983 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 
 <!doctype html>
 <html>
@@ -6,9 +31,15 @@
     <title>后台管理</title>
     <link rel="stylesheet" type="text/css" href="./Public/Admin/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="./Public/Admin/css/main.css"/>
-    <script type="text/javascript" src="./Public/Admin/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="../../../web/home/js/jquery1.42.min.js"></script>
-    <script >
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./Public/Admin/js/libs/modernizr.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="../../../web/home/js/jquery1.42.min.js"><?php echo '</script'; ?>
+>
+    
+    <?php echo '<script'; ?>
+ >
         $(function(){
             $("#nowtime").css({color:'red'});
             window.setInterval('ShowTime()',1000);
@@ -23,7 +54,9 @@
             str += t.getSeconds() + '';
             $("#nowtime").html(str);
         }
-    </script>
+    <?php echo '</script'; ?>
+>
+    
 </head>
 <body>
 
@@ -51,7 +84,9 @@
     <!--左侧菜单栏-->
     
     <!--左侧菜单栏 begin-->
-     {include file='../Public/left.html'}
+     <?php $_smarty_tpl->_subTemplateRender("file:../Public/left.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
     <!--左侧菜单栏 begin-->
     
     <!--右侧主操作区-->
@@ -69,13 +104,6 @@
                 <form action="" method="post">
                     <table class="search-tab">
                         <tr>
-                            <th width="120">选择分类:</th>
-                            <td>
-                                <select name="search-sort" id="">
-                                    <option value="">全部</option>
-                                    <option value="19">精品界面</option><option value="20">推荐界面</option>
-                                </select>
-                            </td>
                             <th width="70">关键字:</th>
                             <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
                             <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
@@ -88,7 +116,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="?p=back&c=Category&a=add"><i class="icon-font"></i>添加分类</a>
+                        <a href="?p=back&c=Blog&a=Add"><i class="icon-font"></i>添加文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                     </div>
                 </div>
@@ -98,60 +126,45 @@
                             <th class="tc" width="5%">
                                 <input class="allChoose" name="" type="checkbox">
                             </th>
-                            <th>ID</th>
                             <th>标题</th>
-                            <th>评论</th>
+                            <th>所属分类</th>
+                            <th>作者</th>
+                            <th>发布时间</th>
+                            <th>点击数</th>
                             <th>操作</th>
                         </tr>
-                                                <tr>
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['data']->value, 'val');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['val']->value) {
+?>
+                        <tr>
                             <td class="tc">
-                                <input name="id[]" value="1" type="checkbox">
+                                <input name="id[]" value="<?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+" type="checkbox">
                             </td>
-                            <td>59</td>
-                            <td >基础知识</td>
-                            <td></td>
+                            <td ><?php echo $_smarty_tpl->tpl_vars['val']->value['title'];?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['category_id'];?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['author'];?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['ptime'];?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['hits'];?>
+</td>
                             <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
+                                <a class="link-update" href="?p=back&c=Blog&a=Edit&id=3">修改</a>
+                                <a class="link-del" href="?p=back&c=Blog&a=Delete&id=3">删除</a>
                             </td>
                         </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="2" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >MVC框架技术</td>
-                            <td>有关PHP领域的各种MVC框架技术</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="3" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >生活感悟</td>
-                            <td>随时随地记录生活的点点滴滴</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="4" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >技术前沿</td>
-                            <td>关注新技术，保持竞争力</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                            </table>
+                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+                        
+                        </table>
                     <div class="list-page"> 2 条 1/1 页</div>
                 </div>
             </form>
@@ -163,3 +176,5 @@
 
 </body>
 </html>
+<?php }
+}

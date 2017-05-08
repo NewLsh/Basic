@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-07 21:09:03
+/* Smarty version 3.1.30, created on 2017-05-08 15:45:54
   from "E:\blog\App\Admin\View\Index\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_590f1c6f640bd7_30431034',
+  'unifunc' => 'content_59102232ea1cd7_34942458',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f4b43edb7a80702f7cf460a94191cf5396d90bd' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Index\\index.html',
-      1 => 1494162090,
+      1 => 1494229534,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:../Public/left.html' => 1,
   ),
 ),false)) {
-function content_590f1c6f640bd7_30431034 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59102232ea1cd7_34942458 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -67,7 +68,7 @@ function content_590f1c6f640bd7_30431034 (Smarty_Internal_Template $_smarty_tpl)
         <div class="topbar-logo-wrap clearfix">
             <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
-                <li><a class="on" href="?p=back">首页</a></li>
+                <li><a class="on" href="#">首页</a></li>
                 <li><a href="./" target="_blank">网站首页</a></li>
             </ul>
         </div>
@@ -85,32 +86,9 @@ function content_590f1c6f640bd7_30431034 (Smarty_Internal_Template $_smarty_tpl)
     <!--左侧菜单栏-->
     
     <!--左侧菜单栏 begin-->
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <h1>菜单</h1>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
-                    <ul class="sub-menu">
-                        <li><a href="?m=Admin&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
-                        <li><a href="?p=back&c=Blog"><i class="icon-font">&#xe005;</i>博文管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe052;</i>友情链接</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="#"><i class="icon-font">&#xe017;</i>系统设置</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe046;</i>数据备份</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe045;</i>数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php $_smarty_tpl->_subTemplateRender("file:../Public/left.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
     <!--左侧菜单栏 begin-->
     
     <!--右侧主操作区-->
