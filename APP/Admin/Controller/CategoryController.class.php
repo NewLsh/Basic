@@ -43,11 +43,10 @@ class CategoryController extends Controller{
   public function del(){
     $cate=Factory::M('Category');
     $res=$cate->del();
-    die();
-    if($res){
-      $this->success('删除成功','?m=Admin&c=Category');
+    if($res === false){
+      $this->success('删除失败','?m=Admin&c=Category');
     }else{
-      $this->error('删除失败','?m=Admin&c=Category');
+      $this->error('删除成功','?m=Admin&c=Category');
     }
   }
 	
