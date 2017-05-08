@@ -133,7 +133,7 @@ public function add($sql,$params = array()){
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue($key,$val);
+          $stmt->bindValue(':'.$key,$val);
         }else{
           $stmt->bindValue($key+1,$val);
         }
@@ -145,7 +145,7 @@ public function add($sql,$params = array()){
       $this->getERR($e);
     }
   }
-   private function getERR($E){
+   private function getERR($e){
     echo "错误信息:",$e->getMessage();
     echo "错误代码:",$e->getCode();
     echo "错误文件:",$e->getFile();

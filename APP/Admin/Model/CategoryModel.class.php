@@ -1,5 +1,5 @@
 <?php
-class CategoryModel extends Model{
+class CategoryModel extends Model{ 
   public function get_cate(){
     $sql = " select * from category";
     $data=$this->select($sql);
@@ -17,4 +17,11 @@ class CategoryModel extends Model{
     }
     return $arr;
   }
+  public function Insert(){
+    $sql="insert into category (name,parent_id) values (:name,:parent_id)";
+    // $arr=$_POST;
+    // print_r($arr);
+    return $this->add($sql,$_POST);
+  }
+  
 }

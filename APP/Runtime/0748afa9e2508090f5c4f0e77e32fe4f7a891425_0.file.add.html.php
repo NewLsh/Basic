@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-08 12:02:31
-  from "E:\blog\App\Admin\View\Category\showCate.html" */
+/* Smarty version 3.1.30, created on 2017-05-08 12:56:52
+  from "E:\blog\App\Admin\View\Category\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_590fedd769a834_14042117',
+  'unifunc' => 'content_590ffa94299558_70869171',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '7e082b3a4d44063806bebdab97fa58d9e6f05743' => 
+    '0748afa9e2508090f5c4f0e77e32fe4f7a891425' => 
     array (
-      0 => 'E:\\blog\\App\\Admin\\View\\Category\\showCate.html',
-      1 => 1494215825,
+      0 => 'E:\\blog\\App\\Admin\\View\\Category\\add.html',
+      1 => 1494219410,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl) {
+function content_590ffa94299558_70869171 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -53,9 +53,9 @@ function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl)
             str += t.getSeconds() + '';
             $("#nowtime").html(str);
         }
+            
     <?php echo '</script'; ?>
 >
-    
 </head>
 <body>
 
@@ -65,7 +65,7 @@ function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl)
         <div class="topbar-logo-wrap clearfix">
             <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
-                <li><a class="on" href="index.php">首页</a></li>
+                <li><a class="on" href="index.html">首页</a></li>
                 <li><a href="#" target="_blank">网站首页</a></li>
             </ul>
         </div>
@@ -120,75 +120,61 @@ function content_590fedd769a834_14042117 (Smarty_Internal_Template $_smarty_tpl)
                 <a href="?p=back">首页</a>
                 <span class="crumb-step">&gt;</span>
                 <span class="crumb-name">分类管理</span>
-            </div>
-        </div>
-        <div class="search-wrap">
-            <div class="search-content">
-                <form action="" method="post">
-                    <table class="search-tab">
-                        <tr>
-                            <th width="120">选择分类:</th>
-                            <td>
-                                <select name="search-sort" id="">
-                                    <option value="">全部</option>
-                                    <option value="19">精品界面</option><option value="20">推荐界面</option>
-                                </select>
-                            </td>
-                            <th width="70">关键字:</th>
-                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
-                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
-                        </tr>
-                    </table>
-                </form>
+                <span class="crumb-step">&gt;</span>
+                <span class="crumb-name">添加分类</span>
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="?m=Admin&c=Category&a=add"><i class="icon-font"></i>添加分类</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                    </div>
-                </div>
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th class="tc" width="5%">
-                                <input class="allChoose" name="" type="checkbox">
-                            </th>
-                            <th>ID</th>
-                            <th>分类名称</th>
-                            <th>操作</th>
-                        </tr>
-                        <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['data']->value, 'val');
+            <div class="result-content">
+                <form action="?m=Admin&c=Category&a=addHandle" method="post" id="myform" >
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><i class="require-red">*</i>分类名称：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="name" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>所属分类:</th>
+                                <td>
+                                    <select name="parent_id">                                      
+                                        <option value="0">顶级分类</option>
+                                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['cate']->value, 'val');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['val']->value) {
 ?>
-                        <tr>
-                            <td class="tc">
-                                <input name="id[]" value='1' type="checkbox">
-                            </td>
-                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
-</td>
-                            <td style="padding-left:<?php echo $_smarty_tpl->tpl_vars['val']->value['level']*2;?>
-em;"><?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
-</td>                        
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <?php
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
+</option>
+                                        <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
-                        </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
-                </div>
-            </form>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>分类描述：</th>
+                                <td>
+                                    <textarea name="" class="common-textarea" cols="60" rows="4"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+
         </div>
 
     </div>
