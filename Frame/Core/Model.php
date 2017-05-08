@@ -1,5 +1,5 @@
 <?php
-include_once 'DB.class.php';
+// include_once 'DB.class.php';
 class student extends DB{
   protected $pdo=null;
   public function __construct(){

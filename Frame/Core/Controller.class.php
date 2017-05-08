@@ -2,7 +2,7 @@
 class Controller{
   public $smarty;
   public function __construct(){
-    include_once FRAME_DIR.'Smarty/Smarty.class,php';
+    include_once FRAME_DIR.'Smarty/Smarty.class.php';
     $this->smarty=new Smarty();
     //设置模板目录
     $this->smarty->setTemplateDir(VIEW_PATH.C);

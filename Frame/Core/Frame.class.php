@@ -4,13 +4,15 @@ class Frame{
     Frame::starsession();
     Frame::getParams();
     Frame::setConst();
+    Frame::autoload();
+    Frame::dispath();
   }
   private static function starsession(){
     session_start();
   }
   private static function getParams(){
     $u=isset($_GET['u'])?  $_GET['u'] : 'Student';
-    $c=isset($_GET['c'])?  $_GET['c'] : 'index';
+    $c=isset($_GET['c'])?  $_GET['c'] : 'Student';
     $a=isset($_GET['a'])?  $_GET['a'] : 'index';
     define('U',$u); //用户
     define('C',$c); //控制器
@@ -18,7 +20,7 @@ class Frame{
   }
   //设置USER目录
   private static function setConst(){
-    echo __DIR__;
+    // echo __DIR__;
     $dir=str_replace('\\','/',__DIR__);
     $dir=str_replace('Core','',$dir);
     define('FRAME_DIR',$dir);
