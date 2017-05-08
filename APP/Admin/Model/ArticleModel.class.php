@@ -30,7 +30,7 @@ class ArticleModel extends Model{
   }
   public function del(){
     $sql="delete from article where id=?";
-    var_dump($_GET);
+    // var_dump($_GET);
     return $this->delete($sql,array($_GET['id']));
   }
 }

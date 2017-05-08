@@ -10,18 +10,18 @@ $data=array(
   array('id'=>8,'name'=>'郑州','parent_id'=>4),
   array('id'=>9,'name'=>'雄安','parent_id'=>6)
 );
-function sortCate($data,$parent_id=0){
+function delCate($data,$id){
   static $arr=array();
   foreach($data as $key=>$val){
-    if($val['parent_id'] == $parent_id){
+    if($val['parent_id'] == $id){
       $arr[] = $val;
       //寻找子集
-      sortCate($data,$val['id']);
+      delCate($data,$val['id']);
     }
   }
   return $arr;
 }
-$arr=sortCate($data);
+$arr=delCate($data,2);
 echo'<pre>';
 print_r($arr);
 ?>
