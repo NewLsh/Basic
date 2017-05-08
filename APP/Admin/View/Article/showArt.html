@@ -111,8 +111,8 @@
                             <td>{$val.ptime}</td>
                             <td>{$val.hits}</td>
                             <td>
-                                <a class="link-update" href="?p=back&c=Blog&a=Edit&id=3">修改</a>
-                                <a class="link-del" href="?p=back&c=Blog&a=Delete&id=3">删除</a>
+                                <a class="link-update" href="?m=Admin&c=Article&a=Edit&id={$val.id}">修改</a>
+                                <a class="link-del" href="?m=Admin&c=Article&a=Del&id={$val.id}">删除</a>
                             </td>
                         </tr>
                         {/foreach}                        

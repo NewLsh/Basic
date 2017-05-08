@@ -11,13 +11,14 @@
     <script>
         window.onload = function () {
             var myfm = document.getElementById('myfm');
-            myfm.onsubmit = document.querySelector('select');
-            if (myfm == '') {
+            myfm.onsubmit = function(){
+                var select= document.querySelector('select');
+            if(select.value == ''){
                 alert('请选择类别');
                 return false;
             }
+            }
         }
-
     </script>
 </head>
 <body>

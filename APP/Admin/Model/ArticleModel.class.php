@@ -11,10 +11,27 @@ class ArticleModel extends Model{
     // echo $sql;
   }
   public function insert(){
+    $sql="insert into article(title,category_id,author,content,ptime,hits,`order`) values (:title,:category_id,:author,:content,:ptime,:hits,:order)";
+    $_POST['hits']=mt_rand(0,1000);
     echo'<pre>';
-    $sql="insert into article (title,category_id,author,content,ptime,hits,`order`) values (:title,:category_id,:author,:content,:ptime,:hits,:'order')";
-    $_POST['hits']=mt_rand(0,10000);
-    print_r($_POST);
+    var_dump($_POST);
      return $this->add($sql,$_POST);    
   }
+  public function getArtById(){
+    $sql="select * from article where id=?";
+    // var_dump($_GET['id']) ;
+    return $this->find($sql,array($_GET['id']));
+  }
+  public function up_Art(){
+    $sql="update article set title=:title,category_id=:category_id,author=:author,content=:content,ptime=:ptime,`order`=:order where id=:id";
+    $_POST['id']=$_GET['id'];
+    // var_dump($_POST);
+    return $this->save($sql,$_POST);
+  }
+  public function del(){
+    $sql="delete from article where id=?";
+    var_dump($_GET);
+    return $this->delete($sql,array($_GET['id']));
+  }
 }
+?>

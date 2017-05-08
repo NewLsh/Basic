@@ -7,13 +7,14 @@ class Model extends DB{
     $db= DB::getDB();
     $this->pdo=$db->pdo;
   }
-public function add($sql,$params = array()){
+  public function add($sql,$params = array()){
     try{
     $stmt=$this->pdo->prepare($sql);
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue($key,$val);
+          $stmt->bindValue(':'.$key,$val);
+          // echo ':'.$key,$val;
         }else{
           $stmt->bindValue($key+1,$val);
         }
@@ -34,14 +35,15 @@ public function add($sql,$params = array()){
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue(':'.$key,$val);
+          $stmt->bindValue(':'.$key,$val);               
         }else{
           $stmt->bindValue($key+1,$val);
         }
       }
     }   
     if( $stmt->execute()){
-      return $this->pdo->rowCountws();
+      // echo $sql;
+      return $stmt->rowCount();
     }else{
       return false;
     }
@@ -58,11 +60,12 @@ public function add($sql,$params = array()){
           $stmt->bindValue(':'.$key,$val);
         }else{
           $stmt->bindValue($key+1,$val);
+          // var_dump($params);
         }
       }
     }   
-    if( $stmt->execute()){
-      return $this->pdo->rowCountws();
+    if($stmt->execute()){
+      return $stmt->rowCount();
     }else{
       return false;
     }
@@ -76,7 +79,7 @@ public function add($sql,$params = array()){
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue($key,$val);
+          $stmt->bindValue(':'.$key,$val);
         }else{
           $stmt->bindValue($key+1,$val);
         }
@@ -95,7 +98,7 @@ public function add($sql,$params = array()){
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue($key,$val);
+          $stmt->bindValue(':'.$key,$val);
         }else{
           $stmt->bindValue($key+1,$val);
         }
@@ -114,7 +117,7 @@ public function add($sql,$params = array()){
     if($params){
       foreach($params as $key=>$val){
         if(is_string($key)){
-          $stmt->bindValue($key,$val);
+          $stmt->bindValue(':'.$key,$val);
         }else{
           $stmt->bindValue($key+1,$val);
         }
@@ -146,10 +149,10 @@ public function add($sql,$params = array()){
     }
   }
    private function getERR($e){
-    echo "错误信息:",$e->getMessage();
-    echo "错误代码:",$e->getCode();
-    echo "错误文件:",$e->getFile();
-    echo "错误行数:",$e->getLine();
+    echo "<br>错误信息:",$e->getMessage();
+    echo "<br>错误代码:",$e->getCode();
+    echo "<br>错误文件:",$e->getFile();
+    echo "<br>错误行数:",$e->getLine();
   }
   
 

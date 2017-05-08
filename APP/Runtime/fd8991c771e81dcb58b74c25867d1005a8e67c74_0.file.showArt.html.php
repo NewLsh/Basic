@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-08 15:54:57
+/* Smarty version 3.1.30, created on 2017-05-08 20:52:19
   from "E:\blog\App\Admin\View\Article\showArt.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59102451189ee7_18650041',
+  'unifunc' => 'content_59106a0318b0b0_93112982',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fd8991c771e81dcb58b74c25867d1005a8e67c74' => 
     array (
       0 => 'E:\\blog\\App\\Admin\\View\\Article\\showArt.html',
-      1 => 1494230096,
+      1 => 1494247939,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../Public/left.html' => 1,
   ),
 ),false)) {
-function content_59102451189ee7_18650041 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59106a0318b0b0_93112982 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <!doctype html>
@@ -154,8 +154,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['val']->value) {
                             <td><?php echo $_smarty_tpl->tpl_vars['val']->value['hits'];?>
 </td>
                             <td>
-                                <a class="link-update" href="?p=back&c=Blog&a=Edit&id=3">修改</a>
-                                <a class="link-del" href="?p=back&c=Blog&a=Delete&id=3">删除</a>
+                                <a class="link-update" href="?m=Admin&c=Article&a=Edit&id=<?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+">修改</a>
+                                <a class="link-del" href="?m=Admin&c=Article&a=Del&id=<?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+">删除</a>
                             </td>
                         </tr>
                         <?php

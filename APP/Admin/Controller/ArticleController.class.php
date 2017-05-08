@@ -24,4 +24,33 @@ class ArticleController extends Controller{
       $this->error('添加失败','?m=Admin&c=Article&a=add');
     }
   }
+  public function Edit(){
+    $art=Factory::M('Article');
+    $row=$art->getArtById();
+    // var_dump($row);
+    $this->assign('row',$row);
+
+    $cate=Factory::M('Category');
+    $this->assign('data',$cate->get_cate());
+
+    $this->display('edit.html');
+  }
+  public function editHandle(){
+    $art=Factory::M('Article');
+    $res=$art->up_Art();
+    if($res === false){
+      $this->success('修改失败','?m=Admin&c=Article&a=edit&id='.$_GET['id']);
+    }else{
+      $this->error('修改成功','?m=Admin&c=Article&a=showArt');
+    }    
+  }
+  public function Del(){
+    $art=Factory::M('Article');
+    $res=$art->del();
+    if($res === false){
+      $this->success('删除失败','?m=Admin&c=Article&a=edit&id='.$_GET['id']);
+    }else{
+      $this->error('删除成功','?m=Admin&c=Article&a=showArt');
+    }    
+  }
 }

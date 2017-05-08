@@ -112,9 +112,9 @@
                             <td>{$val.id}</td>
                             <td style="padding-left:{$val.level*2}em;">{$val.name}</td>                        
                             <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                                <a class="link-del" href="?m=Admin&c=Article&a=showArticle&cid={$val.id}">文章列表</a>
+                                <a class="link-update" href="?m=Admin&c=Category&a=edit">修改</a>
+                                <a class="link-del" href="?m=Admin&c=Category&a=del">删除</a>
+                                <a class="link-del" href="?m=Admin&c=Article&a=showArt&cid={$val.id}">文章列表</a>
                             </td>
                         </tr>
                         {/foreach}

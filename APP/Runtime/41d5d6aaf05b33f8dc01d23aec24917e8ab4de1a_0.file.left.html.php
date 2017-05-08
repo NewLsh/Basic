@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-05-08 15:45:54
+/* Smarty version 3.1.30, created on 2017-05-08 20:22:48
   from "E:\blog\App\Admin\View\Public\left.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59102232ef66a2_58426774',
+  'unifunc' => 'content_59106318912b92_66667763',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59102232ef66a2_58426774 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59106318912b92_66667763 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="sidebar-wrap">
   <div class="sidebar-title">
