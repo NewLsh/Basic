@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.30, created on 2017-05-08 10:40:19
+  from "E:\blog\App\Admin\View\Category\showCate.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_590fda936f44b2_23341109',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '7e082b3a4d44063806bebdab97fa58d9e6f05743' => 
+    array (
+      0 => 'E:\\blog\\App\\Admin\\View\\Category\\showCate.html',
+      1 => 1494211159,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_590fda936f44b2_23341109 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 
 <!doctype html>
 <html>
@@ -6,9 +30,15 @@
     <title>后台管理</title>
     <link rel="stylesheet" type="text/css" href="./Public/Admin/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="./Public/Admin/css/main.css"/>
-    <script type="text/javascript" src="./Public/Admin/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="../../../web/home/js/jquery1.42.min.js"></script>
-    <script >
+    <?php echo '<script'; ?>
+ type="text/javascript" src="./Public/Admin/js/libs/modernizr.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="../../../web/home/js/jquery1.42.min.js"><?php echo '</script'; ?>
+>
+    
+    <?php echo '<script'; ?>
+ >
         $(function(){
             $("#nowtime").css({color:'red'});
             window.setInterval('ShowTime()',1000);
@@ -23,7 +53,9 @@
             str += t.getSeconds() + '';
             $("#nowtime").html(str);
         }
-    </script>
+    <?php echo '</script'; ?>
+>
+    
 </head>
 <body>
 
@@ -33,7 +65,7 @@
         <div class="topbar-logo-wrap clearfix">
             <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
-                <li><a class="on" href="index.html">首页</a></li>
+                <li><a class="on" href="index.php">首页</a></li>
                 <li><a href="#" target="_blank">网站首页</a></li>
             </ul>
         </div>
@@ -125,59 +157,35 @@
                                 <input class="allChoose" name="" type="checkbox">
                             </th>
                             <th>ID</th>
-                            <th>标题</th>
-                            <th>评论</th>
+                            <th>分类名称</th>
                             <th>操作</th>
                         </tr>
-                                                <tr>
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['data']->value, 'val');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['val']->value) {
+?>
+                        <tr>
                             <td class="tc">
-                                <input name="id[]" value="1" type="checkbox">
+                                <input name="id[]" value='1' type="checkbox">
                             </td>
-                            <td>59</td>
-                            <td >基础知识</td>
-                            <td></td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['val']->value['id'];?>
+</td>
+                            <td style="padding-left:<?php echo $_smarty_tpl->tpl_vars['val']->value['level']*2;?>
+em;"><?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
+</td>                        
                             <td>
                                 <a class="link-update" href="#">修改</a>
                                 <a class="link-del" href="#">删除</a>
                             </td>
                         </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="2" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >MVC框架技术</td>
-                            <td>有关PHP领域的各种MVC框架技术</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="3" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >生活感悟</td>
-                            <td>随时随地记录生活的点点滴滴</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="4" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >技术前沿</td>
-                            <td>关注新技术，保持竞争力</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                            </table>
+                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
+                        </table>
                     <div class="list-page"> 2 条 1/1 页</div>
                 </div>
             </form>
@@ -189,3 +197,5 @@
 
 </body>
 </html>
+<?php }
+}
