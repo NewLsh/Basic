@@ -2,10 +2,8 @@
 class DB{
   private static $ins=null;
   private $pdo;
-  private $smarty;
   private function __construct(){
-    $this->conn();
-    $this->smarty();
+    $this->conn();  
   }
   private function __clone(){}
 
@@ -30,15 +28,4 @@ class DB{
       exit();
     }
   }
-  private function smarty(){
-    include_once './smarty/Smarty.class.php';
-    $this->smarty=new smarty();
-  }
-  public function assign($k,$v){
-    $this->smarty->assign($k,$v);
-  }
-  public function display($k){
-    $this->smarty->display($k);
-  }
-  
 }

@@ -6,6 +6,7 @@ class Controller{
     $this->smarty=new Smarty();
     //设置模板目录
     $this->smarty->setTemplateDir(VIEW_PATH.C);
+    // echo VIEW_PATH;
     //设置编译目录
     $this->smarty->setCompileDir(USER_PATH.'Runtime');
   }

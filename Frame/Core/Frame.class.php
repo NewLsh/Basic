@@ -24,10 +24,11 @@ class Frame{
     $dir=str_replace('\\','/',__DIR__);
     $dir=str_replace('Core','',$dir);
     define('FRAME_DIR',$dir);
+    // echo FRAME_DIR;
     define('CORE_DIR',FRAME_DIR.'CORE/');
-    define('CONTROLLER_PATH',USER_PATH.'/CONTROLLER/');
-    define('MODEL_PATH',USER_PATH.'/Model/');
-    define('VIEW_PATH',USER_PATH.'/View/');
+    define('CONTROLLER_PATH',USER_PATH.C.'/CONTROLLER/');
+    define('MODEL_PATH',USER_PATH.C.'/Model/');
+    define('VIEW_PATH',USER_PATH.C.'/View/');
   }
   //自动加载模块
   public static function autoload(){
