@@ -10,11 +10,12 @@ class ArticleModel extends Model{
     }
     // echo $sql;
   }
-  public function insert(){
-    $sql="insert into article(title,category_id,author,content,ptime,hits,`order`) values (:title,:category_id,:author,:content,:ptime,:hits,:order)";
+  public function insert($img){
+    $sql="insert into article(title,category_id,author,content,ptime,hits,`order`,img) values (:title,:category_id,:author,:content,:ptime,:hits,:order,:img)";
     $_POST['hits']=mt_rand(0,1000);
-    echo'<pre>';
-    var_dump($_POST);
+    $_POST['img']=$img;
+    // echo'<pre>';
+    // var_dump($_POST);
      return $this->add($sql,$_POST);    
   }
   public function getArtById(){
@@ -32,6 +33,20 @@ class ArticleModel extends Model{
     $sql="delete from article where id=?";
     // var_dump($_GET);
     return $this->delete($sql,array($_GET['id']));
+  }
+  public function del_all(){
+    // print_r($_POST['id']);
+    $id=implode(',',$_POST['id']);
+    // var_dump($id);
+    // die;
+    $sql="delete from article where id in ($id)";
+    $res=$this->delete($sql);
+    if($res){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 }
 ?>

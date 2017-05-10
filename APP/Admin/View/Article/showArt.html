@@ -25,6 +25,33 @@
             $("#nowtime").html(str);
         }
     </script>
+    <script>
+        window.onload=function(){
+            //页面加载完成时
+            //获取allchose复选框
+            var allChoose= document.querySelector('.allChoose');
+            allChoose.onclick=function(){
+                //点击复选框allChoose时要执行的代码
+                //判断当前的复选框是否选中,this表示当前函数中绑定的事件对象
+                if(this.checked){
+                    //当前的allChoose选中了,则选中当前所有复选框
+                    var inputs=document.querySelectorAll('input');//selectorAll和getElmentsById一样,获取值为一个数组
+                    for(var i=0;i<inputs.length;i++){
+                        inputs[i].checked=true;
+                    }
+                }else{
+                    var inputs=document.querySelectorAll('input');
+                    for(var i=0;i<inputs.length;i++){
+                        inputs[i].checked=false;
+                    }
+                }
+            
+            }
+            document.getElementById('batchDel').onclick=function(){
+                document.getElementById('myform').submit();
+            } 
+        }
+    </script>
     {/literal}
 </head>
 <body>
@@ -80,10 +107,10 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
                         <a href="?m=Admin&c=Article&a=Add"><i class="icon-font"></i>添加文章</a>
+            <form name="myform" action="?m=Admin&c=Article&a=delAll" id="myform" method="post">
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                     </div>
                 </div>
@@ -117,9 +144,9 @@
                         </tr>
                         {/foreach}                        
                         </table>
+            </form>
                     <div class="list-page"> 2 条 1/1 页</div>
                 </div>
-            </form>
         </div>
 
     </div>

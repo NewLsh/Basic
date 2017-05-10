@@ -16,8 +16,15 @@ class ArticleController extends Controller{
     $this->display('add.html');
   }
   public function addHandle(){
+    //img路径上传
+    echo'<pre>';
+    var_dump($_FILES);
+    $up=new Upload();
+    $img=$up->upload();
+    // die();
+    //insert,参数为img路径
     $art=Factory::M('Article');
-    $res=$art->insert();
+    $res=$art->insert($img);
     if($res){
       $this->success('添加成功','?m=Admin&c=Article&a=showArt');
     }else{
@@ -52,5 +59,14 @@ class ArticleController extends Controller{
     }else{
       $this->error('删除成功','?m=Admin&c=Article&a=showArt');
     }    
+  }
+  public function delAll(){
+    $art=Factory::M('Article');
+    $res=$art->del_all();
+    if($res){
+      $this->success('删除成功','?m=Admin&c=Article&a=showArt');
+    }else{
+      $this->success('删除失败','?m=Admin&c=Article&a=showArt');
+    }
   }
 }

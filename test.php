@@ -25,3 +25,6 @@ $arr=delCate($data,2);
 echo'<pre>';
 print_r($arr);
 ?>
+
+<a href="http://192.168.89.40/0508/index.php?m=Admin&c=Article&a=showart">崔</a>
+

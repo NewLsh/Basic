@@ -64,7 +64,7 @@
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="?m=Admin&c=Article&a=addHandle" method="post" id="myfm" >
+                <form action="?m=Admin&c=Article&a=addHandle" method="post" id="myfm" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
@@ -101,6 +101,12 @@
                                 <th><i class="require-red">*</i>排序：</th>
                                 <td>
                                     <input class="common-text required" name="order" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>配图：</th>
+                                <td>
+                                    <input type="file" name="tp">
                                 </td>
                             </tr>
                             <tr>

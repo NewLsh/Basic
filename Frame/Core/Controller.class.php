@@ -18,7 +18,7 @@ class Controller{
 	public function display($k){	
 		$this->smarty->display($k);			
 	}	
-	public function success($msg,$url,$time=3){		
+	public function success($msg,$url,$time=2){		
 		header('content:text/html;charset=utf8;');		
 		echo "<h1>^_^ || ^_^</h1>
           $msg";
@@ -26,7 +26,7 @@ class Controller{
 	}
 	
 	
-	public function error($msg,$url,$time=3){			
+	public function error($msg,$url,$time=2){			
 		header('content:text/html;charset=utf8;');
 		echo "<h1>*_*</h1>
          <h3> $msg</h3>";		

@@ -44,7 +44,8 @@ class CategoryModel extends Model{
     // echo'<pre>';
     // var_dump($arr);
     foreach($arr as $val){
-      $this->delete($sql,array($arr['id']));
+      // print_r(array($val['id']));
+      $this->delete($sql,array($val['id']));
     }
     return true;
     }catch(PDOException $e){
