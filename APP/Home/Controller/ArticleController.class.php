@@ -9,4 +9,10 @@ class ArticleController extends Controller{
     $this->assign('val',$data);
     $this->display('art.html');
   }
+  public function artList(){
+    $art=Factory::M('Article');
+    $data=$art->artList();
+    $this->assign('data',$data);
+    $this->display('artList.html');
+  }
 }
