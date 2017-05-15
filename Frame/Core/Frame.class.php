@@ -26,9 +26,9 @@ class Frame{
     define('FRAME_DIR',$dir);
     // echo FRAME_DIR;
     define('CORE_DIR',FRAME_DIR.'CORE/');
-    define('CONTROLLER_PATH',USER_PATH.C.'/CONTROLLER/');
-    define('MODEL_PATH',USER_PATH.C.'/Model/');
-    define('VIEW_PATH',USER_PATH.C.'/View/');
+    define('CONTROLLER_PATH',USER_PATH.U.'/CONTROLLER/');
+    define('MODEL_PATH',USER_PATH.U.'/Model/');
+    define('VIEW_PATH',USER_PATH.U.'/View/');
   }
   //自动加载模块
   public static function autoload(){

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>教师用户</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+  <script src="./bootstrap/jquery.js"></script>
+  <script src="./bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="text-right">
+    <a href="ps_info.php">个人中心</a>
+    <span>你好,{$smarty.session.username}&nbsp&nbsp</span>
+    <a href="index.php">安全退出</a>
+  </div>
+  <h4>本周的课程如下</h4>
+  <table class="table table-hover">
+  <tr>
+    <td>课程名称</td>
+    <td>授课地点</td>
+    <td>上课班级</td>
+    <td>操作</td>
+  </tr>
+  {foreach $data as $val}
+    <tr>
+      <td>{$val.name}</td>
+      <td>{$val.room}</td>
+      <td>{$val.class_name}</td>
+      <td><a href="?u=Teacher&c=Teacher&a=change&id={$val.roomid}">调课</a> | <a href="?u=Teacher&c=Teacher&a=update&id={$val.roomid}">编辑</a></td>
+    </tr>
+
+  {/foreach}
+  </table>
+
+
+</div>
+</body>
+</html>

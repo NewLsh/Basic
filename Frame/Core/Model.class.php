@@ -84,7 +84,7 @@ class Model extends DB{
           $stmt->bindValue($key+1,$val);
         }
       }
-    }   
+    }       
     $stmt->execute();
     $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $data;
@@ -148,6 +148,12 @@ class Model extends DB{
       $this->getERR($e);
     }
   }
+  protected function getERR($e){
+    echo "<br>错误信息:",$e->getMessage();
+    echo "<br>错误代码:",$e->getCode();
+    echo "<br>错误文件:",$e->getFile();
+    echo "<br>错误行数:",$e->getLine();
+  }
   //日期改格式post
   public function getWeekth(){
      // 计算当前第几周
@@ -155,7 +161,7 @@ class Model extends DB{
     //开学时间转化为秒数,取天数
     $scday=date('z',strtotime($s_start));
     //传入的时间转化为秒数,去天数    
-    $today=date('z',strtotime($post['date']));
+    $today=date('z',strtotime($_POST['date']));
     //向上取整为所选周数
     $weekth=ceil(($today-$scday)/7);
     return $weekth;
@@ -185,16 +191,9 @@ class Model extends DB{
         $floor="化学北楼";break;
     }
     $weekth=$this->getWeekth();
-    $week=date('w',strtotime($post['date']));
-    $reg="$floor".'.*'.$week.'#'.$post['course'];
+    $week=date('w',strtotime($_POST['date']));
+    $reg="$floor".'.*'.$week.'#'.$_POST['course'];
     return $reg;
-
-  }
-  protected function getERR($e){
-    echo "<br>错误信息:",$e->getMessage();
-    echo "<br>错误代码:",$e->getCode();
-    echo "<br>错误文件:",$e->getFile();
-    echo "<br>错误行数:",$e->getLine();
   }
   
 

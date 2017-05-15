@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>课程编辑</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+	<script src="./bootstrap/jquery.js"></script>
+	<script src="./bootstrap/bootstrap.min.js"></script>
+  <script>
+    window.onload=function(){
+     var u= document.getElementsByName('uid');
+      u.onclick=function(){
+        console.log(u);
+        document.cookie = 'uid='+u.value;
+        setCookie('uid',u.value);
+      }
+    }
+  </script>
+</head>
+<!--**************要调的课******************-->
+<body>
+<div class="container">
+<h3>将下列课程</h3>
+<table class="table table-condensed">
+<tr>
+  <td>课程名称</td>
+  <td>授课地点/时间</td>
+  <td>上课班级</td>
+  <td>操作</td>
+</tr>
+<tr>
+  <td>{$data.name}</td>
+  <td>{$data.room}</td>
+  <td>{$data.class_name}</td>
+  <td>调课</td>
+</tr>
+</table>
+<div class="text-right">
+  <!--/*************************隐藏表单******************************/-->
+<form action="?u=Teacher&c=Teacher&a=upHandle" method="post" onsubmit="return confirm('真的要提交吗')">
+  <input type="hidden" name="roomid" value="{$data.roomid}">
+  <input type="hidden" name="teacherid" value="{$smarty.session.userid}">
+  {if isset($smarty.session.date)}
+  <input type="hidden" name="date" value="{$smarty.session.date}">
+  {/if}
+  <input type="submit" class="btn btn-info" />
+  <div class="btn btn-default" onclick="location.href='?u=Teacher&c=Teacher'">取消</div>
+</form>
+</div>
+  <!--/*************************查询******************************/-->
+<h4>调换至</h4>
+<form action="?u=Teacher&c=Teacher&a=change&id={$smarty.get.id}" method="post">
+  <div class="col-sm-3 from-group">
+    <label for="">选择日期</label>
+    <input type="date" class="btn" name="date"></div>
+  <div class="col-sm-3 form-group">
+    <label for="" class="">选择楼层</label>
+
+    <select name="floor" id="" class='btn' data-toggle="dropdown">
+			
+			<option value="0">全部</option>
+			<option value=1>勤政楼</option>
+			<option value="2">计科楼</option>
+			<option value="3">物理南楼</option>
+			<option value="4">化学北楼</option>
+		</select>
+  </div>
+  <div class="col-sm-3 form-group">
+    <label for="" class="">选择课时</label>
+
+    <select name="course" id="" class='btn' data-toggle="dropdown">
+			
+			<option value="1">早上一二节</option>
+			<option value="2">早上三四节</option>
+			<option value="3">第三课时</option>
+			<option value="4">第四课时</option>
+			<option value="5">第五课时</option>
+		</select>
+  </div>
+
+  <div class="col-sm-2 form-group"><input type="submit" value="查询" class="btn btn-success btn-block "></div>
+  <div class="col-sm-1 form-group"> <input type="reset" value="重置" class="btn btn-info btn-block"></div>
+</form>
+<!--/*************************查询结果******************************/-->
+<table class="table table-striped">
+  <tr>
+    <td>教室ID</td>
+    <td>教室名称</td>
+    <td>教室规模</td>
+    <td>操作</td>
+  </tr>
+  {if isset($res)}
+  {foreach $res as $val}
+  <tr>
+    <td>{$val.id}</td>
+    <td>{$val.name}</td>
+    <td>{$val.size}</td>
+    <td><input type="radio" name="uid" value="{$val.id}"> </td>
+  </tr>
+  {/foreach}
+  {/if}
+</table>
+
+
+
+</div>
+</body>
+</html>

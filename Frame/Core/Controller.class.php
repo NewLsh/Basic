@@ -18,5 +18,17 @@ class Controller{
   public function display($template){
     $this->smarty->display($template);
   }
+  public function success($me,$url,$time=2){
+    header('content:text/html;charset=utf8;');
+    echo "<h1>:)<h1>
+          <h3>$me</h3>";
+   header("refresh:$time;url=$url");
+  }
+  public function error($me,$url,$time=2){
+    header('content:text/html;charset=utf8;');
+    echo "<h1>:(<h1>
+          <h3>$me</h3>";
+   header("refresh:$time;url=$url");
+  }
 }
 ?>

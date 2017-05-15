@@ -5,10 +5,10 @@ class StudentController extends Controller{
   }
   public function show(){
     $stu=Factory::M('Student');
-    $data=$stu->select();
+    $data=$stu->show();
     $this->assign('data',$data);
     
-    $this->display('index');
+    $this->display('show.html');
   }
 }
 

@@ -1,21 +1,22 @@
 <?php
 class StudentModel extends Model{
   public function show(){
-    $sql="select * from ? where room regexp ?";
+    $this->check();
     $empty='empty'.$this->getweekth();
     $reg=$this->getReg();
-    return $this->select($sql,array($empty,$reg));
+    $sql="select * from  $empty  where name regexp  '$reg'";    
+    return $this->select($sql);
     
   }
-  protected function check($post){
-    if(!empty($post['date'])){
-      $s=date('d',strtotime($post['date']));
+  protected function check(){
+    if(!empty($_POST['date'])){
+      $s=date('d',strtotime($_POST['date']));
       $t=date('d',time());
       if($s<=$t){
-        echo "<script>alert('选择合理的日期');location.href='index.html';</script>";
+        echo "<script>alert('请选择正确的日期');location.href='index.php';</script>";
       }
     }else{
-        echo "<script>alert('日期不能为空');location.href='index.html';</script>";
+        echo "<script>alert('日期不能为空');location.href='index.php';</script>";
     }
   }
 }

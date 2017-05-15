@@ -26,7 +26,7 @@ class Verify{
       $b=$l*($i+1);
       $str=str_shuffle($b_str)[1];
       $yzm.=$str;
-      imagettftext($img,$font_siz,mt_rand(-30,30),mt_rand($a,$b),mt_rand(50,60),$ttfcolor, CORE_DIR.'Deng.ttf',$str);
+      imagettftext($img,$font_siz,0,mt_rand($a,$b),mt_rand(50,60),$ttfcolor, CORE_DIR.'Deng.ttf',$str);
     }
     // var_dump($yzm);
     $_SESSION['yzm']=$yzm;
