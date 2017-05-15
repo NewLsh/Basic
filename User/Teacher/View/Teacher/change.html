@@ -8,15 +8,10 @@
   <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
 	<script src="./bootstrap/jquery.js"></script>
 	<script src="./bootstrap/bootstrap.min.js"></script>
-  <script>
-    window.onload=function(){
-     var u= document.getElementsByName('uid');
-      u.onclick=function(){
-        console.log(u);
-        document.cookie = 'uid='+u.value;
-        setCookie('uid',u.value);
-      }
-    }
+  <script>   
+      function setcookie(id){
+        document.cookie = 'uid=' + escape(id);    
+      }    
   </script>
 </head>
 <!--**************要调的课******************-->
@@ -97,7 +92,7 @@
     <td>{$val.id}</td>
     <td>{$val.name}</td>
     <td>{$val.size}</td>
-    <td><input type="radio" name="uid" value="{$val.id}"> </td>
+    <td><input type="radio" name="uid" onclick="setcookie({$val.id})"> </td>
   </tr>
   {/foreach}
   {/if}
