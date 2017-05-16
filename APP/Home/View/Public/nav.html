@@ -6,5 +6,24 @@
   <a href="?m=Home&c=Article&a=artList&id=1">关于我</a>
   <a href="?m=Home&c=Article&a=artList&id=15">世事十载</a>
   <a href="?m=Home&c=Article&a=artList&id=3">登高望远</a>
-  <a href="new.html">友情链接</a></nav>
+  <a href="new.html">友情链接</a>
+  {if isset($smarty.session.user)}
+  <span>{$smarty.session.user.username}</span>
+  <span>退出</span>
+  {else}
+  <span id="reg" >注册</span>
+  <span id="login">登陆</span>
+  {/if}
+  </nav>
+  
 </header>
+<script>
+  window.onload=function(){
+    document.getElementById('reg').onclick=function(){
+      location.href='index.php?c=Login&a=register';
+    }
+    document.getElementById('login').onclick=function(){
+      location.href='index.php?c=Login&a=login'
+    }
+  }
+</script>
