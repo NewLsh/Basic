@@ -1,13 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+<html lang="en" <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>后台管理</title>
+<link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+<script src="./bootstrap/jquery.js"></script>
+<script src="./bootstrap/bootstrap.min.js"></script>
 </head>
+
 <body>
-  
-  <h1>管理员首页</h1>
+  <div class="container">
+    <div class="col-sm-12" >
+      <div class="text-left"><a href="index.php?u=Admin&c=Admin">首页</a></div>
+     
+      <div class="text-right"><span>你好,{$smarty.session.adminname}&nbsp&nbsp</span><a href="index.php">安全退出</a></div>
+    </div>
+    <div class="col-sm-12"><h4>欢迎使用后台管理系统</h4></div>
+    
+    <div class="col-sm-6 col-sm-offset-2">
+    <table class="table table-hover" width="60%">
+      <tr>
+        <td> DATE:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>TIME:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>System Info:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>功能:</td>
+        <td><a href="?u=Admin&c=Admin&a=manage">用户管理</a></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+    </table>
+
+    </div>
+
+
+  </div>
 </body>
+
 </html>

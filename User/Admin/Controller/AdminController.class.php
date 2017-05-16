@@ -1,8 +1,10 @@
 <?php
 class AdminController extends Controller{
   public function index(){
-  
-    $this->display('index.html');
+      $this->display('index.html');
+  }
+  public function manage(){
+    
   }
   public function change(){
     $tc=Factory::M('Teacher');
