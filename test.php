@@ -31,3 +31,4 @@ print_r($arr);
 echo "<pre>";
 var_dump($1);
 die();
+show;
