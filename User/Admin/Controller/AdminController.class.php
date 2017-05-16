@@ -1,10 +1,8 @@
 <?php
-class TeacherController extends Controller{
+class AdminController extends Controller{
   public function index(){
-    $tc=Factory::M('Teacher');
-    $data=$tc->index();
-    $this->assign('data',$data);
-    $this->display('teacher.html');
+  
+    $this->display('index.html');
   }
   public function change(){
     $tc=Factory::M('Teacher');
