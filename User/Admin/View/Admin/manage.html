@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>查询空余教室</title>
+  <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+  <script src="./bootstrap/jquery.js"></script>
+  <script src="./bootstrap/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-sm-12">
+      <div class="text-left"><a href="index.php?u=Admin&c=Admin">首页</a></div>
+
+      <div class="text-right"><span>你好,{$smarty.session.adminname}&nbsp&nbsp</span><a href="index.php">安全退出</a></div>
+    </div>
+    <div class="col-sm-12">
+      <h4>用户管理</h4> <div class="text-right"> <a href="u=Admin&c=Admin&a=add">添加用户</a> </div> </div>
+    <table class="table table-striped">
+      <tr>
+        <td>教师id</td>
+        <td>教师姓名</td>
+        <td>操作</td>
+        <td>查看</td>
+      </tr>
+      {foreach $data as $val}
+      <tr>
+        <td>{$val.id}</td>
+        <td>{$val.name}</td>
+        <td>
+          <a href="?u=Admin&c=Admin&a=del&id={$val.id}">删除</a>
+          <a href="?u=Admin&c=Admin&a=edit&id={$val.id}">编辑</a>
+        </td>
+        <td><a href="?u=Admin&c=Admin&a=info&id={$val.id}">详细信息</a></td>
+      </tr>
+      
+      {/foreach}
+
+    </table>
+  </div>
+</body>
+
+</html>

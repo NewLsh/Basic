@@ -4,7 +4,11 @@ class AdminController extends Controller{
       $this->display('index.html');
   }
   public function manage(){
+    $ad=Factory::M('Admin');
+    $data=$ad->show();
     
+    $this->assign('data',$data);
+    $this->display('manage.html');
   }
   public function change(){
     $tc=Factory::M('Teacher');
