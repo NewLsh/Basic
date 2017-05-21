@@ -2,6 +2,9 @@
 class Controller{
   public $smarty;
   public function __construct(){
+    if(method_exists($this,'jiance')){
+      $this->jiance();
+    }
     include_once FRAME_DIR.'Smarty/Smarty.class.php';
     $this->smarty=new Smarty();
     //设置模板目录

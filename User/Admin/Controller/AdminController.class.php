@@ -1,7 +1,10 @@
 <?php
-class AdminController extends Controller{
-  public function index(){
-      $this->display('index.html');
+class AdminController extends CommonController{
+  // public function __construct(){
+  //   $this->jiance();
+  // }
+  public function index(){    
+    $this->display('index.html');
   }
   public function manage(){
     $ad=Factory::M('Admin');
@@ -52,11 +55,27 @@ class AdminController extends Controller{
   }
   public function addhandle(){
    $tc=Factory::M('Admin');
-   if($tc->add()){
+   
+   if($tc->addtc()){
      $this->success('添加成功','?u=Admin&c=Admin&a=manage');
     } else{
      $this->error('添加失败','?u=Admin&c=Admin&a=manage');  
 
     }
+  }
+  public function edit(){
+    $tc=Factory::M('Teacher');
+    $data=$tc->info();
+    $this->assign('val',$data);
+    $this->display('edit.html');
+  }
+  public function edithd(){
+    $tc=Factory::M('Admin');
+   if($tc->edittc() !== false){
+    $this->success('修改成功','?u=Admin&c=Admin&a=manage');
+    } else{
+     $this->error('修改失败','?u=Admin&c=Admin&a=manage');  
+
+    }    
   }
 }

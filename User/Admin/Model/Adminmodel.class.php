@@ -61,8 +61,13 @@ class AdminModel extends Model{
     $sql="select * from teachers where id = $_SESSION[userid]";
     return $this->find($sql);
   }
-  public function add(){
-     $sql="insert into teachers (name,sex,age,tel) values (:name,:sex,:age.:tel)";
+  public function addtc(){
+     $sql="insert into teachers (name,sex,age,tel) values (:name,:sex,:age,:tel)";
+     
     return $this->add($sql,$_POST);
+  }
+  public function edittc(){
+    $sql="update teachers set name=:name,sex=:sex,age=:age,tel=:tel where id=$_GET[id]";
+    return $this->save($sql,$_POST);
   }
 } 
