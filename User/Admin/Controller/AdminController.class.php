@@ -37,4 +37,26 @@ class AdminController extends Controller{
     $this->display('info.html');
     
   }
+  public function del(){
+    $tc=Factory::M('Teacher');
+    // die();
+    if($tc->del() !== false){
+    $this->success('修改成功','?u=Admin&c=Admin&a=manage');
+    } else{
+     $this->error('修改失败','?u=Admin&c=Admin&a=manage');  
+
+    }
+  }
+  public function add(){
+    $this->display('add.html');
+  }
+  public function addhandle(){
+   $tc=Factory::M('Admin');
+   if($tc->add()){
+     $this->success('添加成功','?u=Admin&c=Admin&a=manage');
+    } else{
+     $this->error('添加失败','?u=Admin&c=Admin&a=manage');  
+
+    }
+  }
 }

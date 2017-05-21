@@ -19,7 +19,7 @@
       <div class="text-right"><span>你好,{$smarty.session.adminname}&nbsp&nbsp</span><a href="index.php">安全退出</a></div>
     </div>
     <div class="col-sm-12">
-      <h4>用户管理</h4> <div class="text-right"> <a href="u=Admin&c=Admin&a=add">添加用户</a> </div> </div>
+      <h4>用户管理</h4> <div class="text-right"> <a href="?u=Admin&c=Admin&a=add">添加用户</a> </div> </div>
     <table class="table table-striped">
       <tr>
         <td>教师id</td>
@@ -32,7 +32,7 @@
         <td>{$val.id}</td>
         <td>{$val.name}</td>
         <td>
-          <a href="?u=Admin&c=Admin&a=del&id={$val.id}">删除</a>
+          <a href="?u=Admin&c=Admin&a=del&id={$val.id}" onclick="return conf()">删除</a>
           <a href="?u=Admin&c=Admin&a=edit&id={$val.id}">编辑</a>
         </td>
         <td><a href="?u=Admin&c=Admin&a=info&id={$val.id}">详细信息</a></td>
@@ -42,6 +42,16 @@
 
     </table>
   </div>
+  <script>
+   function conf(){
+     if(confirm('真的要删除该用户吗')){
+       return true ;
+     }else
+     {
+       return false;
+     }
+   }
+  </script>
 </body>
 
 </html>

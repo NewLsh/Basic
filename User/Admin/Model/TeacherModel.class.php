@@ -1,5 +1,5 @@
 <?php
-class AdminModel extends Model{
+class TeacherModel extends Model{
   public function index(){
     $week='week'.$this->autoWeekth();
     $sql="select * from $week where teacherid=$_SESSION[userid]";
@@ -40,8 +40,14 @@ class AdminModel extends Model{
   }
 
   public function show(){
-    $sql="select * from teachers";
-    return $this->select($sql);    
+    if($this->check()){
+    $empty='empty'.$this->getweekth();
+    $reg=$this->getReg();
+    $sql="select * from  $empty  where name regexp  '$reg'";    
+    return $this->select($sql);
+    }
+    
+    
   }
   protected function check(){
     if(!empty($_POST['date'])){
@@ -58,11 +64,11 @@ class AdminModel extends Model{
     return true;
   }
   public function info(){
-    $sql="select * from teachers where id = $_SESSION[userid]";
+    $sql="select * from teachers where id = $_GET[id]";
     return $this->find($sql);
   }
-  public function add(){
-     $sql="insert into teachers (name,sex,age,tel) values (:name,:sex,:age.:tel)";
-    return $this->add($sql,$_POST);
+  public function del(){
+    $sql="delete from teachers where id = $_GET[id]";
+    return $this->delete($sql);
   }
-} 
+}
