@@ -4,6 +4,7 @@ class LoginController extends Controller{
     $this->display('login.html');
   }
   public function Handle(){
+    
      $lo=Factory::M('Login');
      if($lo->check()){
        $this->success('登陆成功','?u=Admin&c=Admin');
@@ -11,6 +12,9 @@ class LoginController extends Controller{
        $this->error('登陆失败','?u=Admin&c=Login');
      }
      
+  }
+  public function yzm(){
+    Verify::yzm();
   }
 
 }

@@ -1,7 +1,7 @@
 <?php
 class LoginModel extends Model{
   public function check(){
-    // $this->yzm();
+    $this->yzm();
     $sql="select * from admin where id=?";
     $arr=$this->find($sql,array($_POST['admin']));
     if($arr === false){
